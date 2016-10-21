@@ -1,0 +1,7 @@
+rm -f main.aux
+rm -f main.toc
+rm -f main.pdf
+rm -f main.log
+pdflatex main.tex
+pdflatex main.tex
+pdflatex main.tex
