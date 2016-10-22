@@ -2,7 +2,7 @@
 #																									#
 #					Cornell University, Muon G-2						#
 #																									#
-# 		Repository for the Fourrier Analysis				#
+# 		Repository for the Fourier Analysis 				#
 #																									#
 # =============================================== #
 
@@ -18,4 +18,4 @@ Contains a README for instructions about how to use it
 Contain the C++ code suite
 Contains a README for instructions about how to use it
 
-
+== test line by SC ==
