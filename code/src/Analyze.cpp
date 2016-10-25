@@ -46,17 +46,17 @@ int main() {
 
 	}
 
-	inFile->Close();
-
 	// Plot and save histogram
+	TCanvas c;
+	h_mu_t->Draw();
+	c.SaveAs("MuTime.eps") ;
+	c.SaveAs("MuTime.png") ;
 	TString outRootFileName = "/nfs/gm2/data1/achapela/BMAD/Data/StartTrackingInflectorExitPerfectBeamWithRealisticPandTspread/frs.root" ;
 	TFile *outFile = new TFile(outRootFileName, "RECREATE") ;
 	h_mu_t->Write();
-	TCanvas c;
-	h_mu_t->Draw();
-	h_mu_t->Write();
-	c.SaveAs("MuTime.eps") ;
-	c.SaveAs("MuTime.png") ;
+
+	// Close Tfile
 	outFile->Close();
+	inFile->Close();
 
 }
