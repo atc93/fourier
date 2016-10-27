@@ -1,4 +1,4 @@
-#include "../inc/header.hh"
+#include "../inc/headers.hh"
 
 const double PI = 3.141592653589793238460;
 
@@ -11,64 +11,15 @@ typedef std::valarray<Complex> CArray;
 typedef std::string String;
 typedef std::valarray<double> DArray;
 
-//Given an interval in the signal, this function finds
-//the time corresponding to the signal maximum
+// === FUNCTION PRE-DECLARATION === //
 
-int MaxTimeFinder(int bin_i, int size, TH1D *h1){
-	double InitialContent= h1->GetBinContent(bin_i);
-	double t_max=h1->GetBinLowEdge(bin_i);
-	for (int i=bin_i+1; i<=(size+bin_i-1); i++){
-		double NewContent=h1->GetBinContent(i);
-		if (InitialContent<=NewContent){ 
-			t_max=h1->GetBinLowEdge(i);
-			InitialContent=NewContent;
-		}
-	}
-	return t_max;
-}	
-//This function Fourier analyzes an interval to find the
-//dominant frequency and then the period
-int PeriodFinder(int bin_i, int size, TH1D *h1){
-	Complex fft_input[size];
-	for (int i = bin_i; i<=(size+bin_i-1); i++) {
-		int j=i-bin_i;
-		fft_input[j]=h1->GetBinContent(i);
-	}
-	CArray data(fft_input, size);
-	double re[size];
-	double im[size];
 
-	for (int i=0;i<size;++i){
-		re[i]=std::real(data[i]);
-		im[i]=std::imag(data[i]);
-	}
+int MaxTimeFinder(int bin_i, int size, TH1D *h1);
+int PeriodFinder(int bin_i, int size, TH1D *h1);
 
-	TVirtualFFT *fft_own1=TVirtualFFT::FFT(1, &size, "C2CBACKWARD ES K");
-	fft_own1->SetPointsComplex(re,im);
-	fft_own1->Transform();
-	fft_own1->GetPointsComplex(re,im);
 
-	TH1D *hfft1 = new TH1D("hfft","RE_FFT of Toy Model, Perfect Start Time",size,0,1E9);
-	hfft1->GetXaxis()->SetTitle("Frequency [Hz]");
-	hfft1->GetXaxis()->CenterTitle();
+// === MAIN FUNCTION === //
 
-	for(int ii=1;ii<=size;ii++){
-		hfft1->SetBinContent(ii,re[ii-1]);
-	}
-
-	double InitialContent= hfft1->GetBinContent(64);
-	double f_max=hfft1->GetBinLowEdge(64);
-	for (int i=65; i<=72; i++){
-		double NewContent=hfft1->GetBinContent(i);
-		if (InitialContent<=NewContent){
-			f_max=hfft1->GetBinLowEdge(i);
-			InitialContent=hfft1->GetBinContent(i);
-		}
-	}
-	double period=1.0/f_max;
-	std::cout<<f_max<<std::endl;
-	return period;
-}
 
 int main(int argc, char* argv[]){
 
@@ -203,10 +154,8 @@ int main(int argc, char* argv[]){
 	pt->Draw("same");
 	pt2->Draw("same");
 
-	c.SaveAs("analyticREFFT_0.2pct_momspread_ts-0ns_t0-75ns.eps");
-	c.SaveAs("analyticREFFT_0.2pct_momspread_ts-0ns_t0-75ns.png");
-	//c.SetLogy();
-	//c.SaveAs("REFFT_0.2pct_momspread_log_ts-100ns_t0-79ns.eps");
+	c.SaveAs("plot/FRS_ReFFT.eps");
+	c.SaveAs("plot/FRS_ReFFT.png");
 
 	TFile *FFT = new TFile("RawFFT.root","RECREATE");
 	hfft->Write();
@@ -274,9 +223,9 @@ int main(int argc, char* argv[]){
 
 	leg->Draw("same");
 
-	c.SaveAs("FRS_FFT_MAG.eps");
-	c.SaveAs("FRS_FFT_MAG.pdf");
-	c.SaveAs("FRS_FFT_MAG.png");
+	c.SaveAs("plot/FRS_FFT_MAG.eps");
+	c.SaveAs("plot/FRS_FFT_MAG.pdf");
+	c.SaveAs("plot/FRS_FFT_MAG.png");
 	c.Write("MAG");
 
 	FFT->Close();
@@ -285,3 +234,68 @@ int main(int argc, char* argv[]){
 	return 0;
 }
 
+
+
+// === FUNCTION DEFINITION === //
+
+
+// Given an interval in the signal, this function finds
+// the time corresponding to the signal maximum
+
+int MaxTimeFinder(int bin_i, int size, TH1D *h1){
+  double InitialContent= h1->GetBinContent(bin_i);
+  double t_max=h1->GetBinLowEdge(bin_i);
+  for (int i=bin_i+1; i<=(size+bin_i-1); i++){
+    double NewContent=h1->GetBinContent(i);
+    if (InitialContent<=NewContent){
+      t_max=h1->GetBinLowEdge(i);
+      InitialContent=NewContent;
+    }
+  }
+  return t_max;
+}
+
+
+// This function Fourier analyzes an interval to find the
+// dominant frequency and then the period
+int PeriodFinder(int bin_i, int size, TH1D *h1){
+  Complex fft_input[size];
+  for (int i = bin_i; i<=(size+bin_i-1); i++) {
+    int j=i-bin_i;
+    fft_input[j]=h1->GetBinContent(i);
+  }
+  CArray data(fft_input, size);
+  double re[size];
+  double im[size];
+
+  for (int i=0;i<size;++i){
+    re[i]=std::real(data[i]);
+    im[i]=std::imag(data[i]);
+  }
+
+  TVirtualFFT *fft_own1=TVirtualFFT::FFT(1, &size, "C2CBACKWARD ES K");
+  fft_own1->SetPointsComplex(re,im);
+  fft_own1->Transform();
+  fft_own1->GetPointsComplex(re,im);
+
+  TH1D *hfft1 = new TH1D("hfft","RE_FFT of Toy Model, Perfect Start Time",size,0,1E9);
+  hfft1->GetXaxis()->SetTitle("Frequency [Hz]");
+  hfft1->GetXaxis()->CenterTitle();
+
+  for(int ii=1;ii<=size;ii++){
+    hfft1->SetBinContent(ii,re[ii-1]);
+  }
+
+  double InitialContent= hfft1->GetBinContent(64);
+  double f_max=hfft1->GetBinLowEdge(64);
+  for (int i=65; i<=72; i++){
+    double NewContent=hfft1->GetBinContent(i);
+    if (InitialContent<=NewContent){
+      f_max=hfft1->GetBinLowEdge(i);
+      InitialContent=hfft1->GetBinContent(i);
+    }
+  }
+  double period=1.0/f_max;
+  std::cout<<f_max<<std::endl;
+  return period;
+}
