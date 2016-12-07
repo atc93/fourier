@@ -1,34 +1,90 @@
 \section{Fast Rotation}
 
+
+\subsection{Generality}
+
+The fast rotation refers to the cyclotron motion in the ring, which has a revolution frequency of 6.71 MHz (period of 149 ns) 
+for muon propagating on the magic orbit with the magic momentum. 
+The fast rotation signal corresponds to observing the evolution of the beam as it rotates around the ring. 
+The transverse emittance of the beam and its momentum spread make the beam decohere (or debunch).
+To understand how the momentum spread leads to decoherence, one have to remember that the orbit radius for a fixed magnetic
+field is set by the momentum of the particle. Two particles injected on the magic orbit but with different momenta will
+have different radii. Given than the speed of the muons almost does not depend on the momentum given they are relativistic,
+the different momenta lead to different revolution frequencies. The higher momentum muon will complete a revolution
+slower (larger radius) than the lower momentum muon (smaller radius). 
+The small difference in revolution frequency leads to the beam having decohered after about 30 $\mu$s. 
+From an initial beam with a limited longitudinal extension we end up with a beam filling entirely the ring.
+
+\subsection{Analytical description}
+
+For David:\newline
 ADD LONGITUDINAL BEAM EXTENSION ON TOP OF ENERGY SPREAD \newline
-SHOW PLOTS for\newline
+FILL FIGURE FOR\newline
   * no  E spread, T spread\newline
   * add E spread\newline
   * add T spread\newline
 
-Imagine that the initial distribution has zero emittance, zero energy spread and zero bunch length. The particles share a common revolution period $T$ and the time dependence of the intensity signal at a fixed point is 
+Imagine that the initial muon distribution has zero emittance (no transverse size), zero momentum spread and zero bunch length (no longitudinal extension). 
+The particles share a common revolution period $T$ and the time dependence of the intensity signal at a fixed point (signal measured with a fiber harp for example), is 
 
 \begin{equation}
-I(t)=\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\right)
+I(t)=\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\right),
 \end{equation} 
-where $n$ is any non negative integer and $\theta$ is the azimuthal position of the point in the ring. A particle with energy offset $\Delta$ will have revolution period $T(1+\Delta)$, so that 
+where $n$ is any non negative integer that corresponds to the number of revolution in the ring, 
+and $\theta$ is the azimuthal position of the point in the ring.
+Figure~\ref{fig:perfect_frs} shows what the fast rotation signal looks like for a beam the characteristics described above.
+The beam remain unchanged as a function of time given its perfectness.
 
+\begin{figure}[bt]
+
+\caption{Fast rotation signal as a function of time for a muon beam with zero emittance, zero momentum spread and zero bunch length.}
+\label{fig:perfect_frs}
+\end{figure}
+ 
+A particle with momentum offset $\Delta$ will have revolution period $T(1+\Delta)$, so that 
 \begin{equation}
-I(t,\Delta)=\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\left(1+\Delta\right)\right) 
+I(t,\Delta)=\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\left(1+\Delta\right)\right). 
 \end{equation}
-
 The fast rotation signal at the point is then 
 
 \begin{equation}
 S(t)=\sum^{\infty}_{n=0}\int\rho(\Delta)\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\left(1+\Delta\right)\right)d\Delta 
 \end{equation}
+where $\rho(\Delta)$ is the distribution of momenta offsets. If the momentum distribution is a Gaussian with width $\Delta_0$, then 
 
-where $\rho(\Delta)$ is the distribution of momenta offsets. If the energy distribution is a Gaussian with width $\Delta_0$, then 
-
-\[S(t) =\sum^{\infty}_{n=0}\int\frac{e^{-\Delta^2/(2\Delta^2_0)}}{\sqrt{2\pi}\Delta_0}\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\left(1+\Delta\right)\right)d\Delta=\]\[\sum^{\infty}_{n=0}\int\frac{e^{-\Delta^2/(2\Delta^2_0)}}{\sqrt{2\pi}\Delta_0}\frac{\delta\left(\Delta-\left(\frac{t}{(n+\theta/2\pi)T}-1\right)\right)}{(n+\theta/2\pi)T}d\Delta=\]\[\sum^{\infty}_{n=0}\frac{\exp[-(\frac{t}{(n+\theta/2\pi)T}-1)^2/2\Delta^2_0]}{\sqrt{2\pi}\Delta_0(n+\theta/2\pi)T}=\]\[\sum^{\infty}_{n=0}\frac{\exp[-(t-(n+\theta/2\pi)T)^2/2\Delta^2_0(n+\theta/2\pi)^2T^2]}{\sqrt{2\pi}\Delta_0(n+\theta/2\pi)T}\]
-
+\[S(t) =\sum^{\infty}_{n=0}\int\frac{e^{-\Delta^2/(2\Delta^2_0)}}{\sqrt{2\pi}\Delta_0}
+\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\left(1+\Delta\right)\right)d\Delta\]
+\[=\sum^{\infty}_{n=0}\int\frac{e^{-\Delta^2/(2\Delta^2_0)}}{\sqrt{2\pi}\Delta_0}\frac{\delta\left(\Delta-\left(\frac{t}{(n+\theta/2\pi)T}-1\right)\right)}{(n+\theta/2\pi)T}d\Delta\]
+\[=\sum^{\infty}_{n=0}\frac{\exp[-(\frac{t}{(n+\theta/2\pi)T}-1)^2/2\Delta^2_0]}{\sqrt{2\pi}\Delta_0(n+\theta/2\pi)T}\]
+\[=\sum^{\infty}_{n=0}\frac{\exp[-(t-(n+\theta/2\pi)T)^2/2\Delta^2_0(n+\theta/2\pi)^2T^2]}{\sqrt{2\pi}\Delta_0(n+\theta/2\pi)T}\]
 
 Using the fact that $\theta/2\pi=t_0/T$, we rewrite the above expression as 
 \begin{equation}
 \sum^{\infty}_{n=0}\frac{e^{-(t-(nT+t_0))^2/2\Delta^2_0(nT+t_0)^2}}{\sqrt{2\pi}\Delta_0(nT+t_0)}
+\label{eq:Espread_frs}
 \end{equation}
+
+Figure~\ref{fig:Espread_frs} shows the fast rotation signal for a beam with zero emittance, zero bunch length but with a 0.112\% momentum spread. 
+One can see that the beam decoheres. The decoherence envelope is set by the momentum spread, the more spread the faster the decoherence.
+
+\begin{figure}[bt]
+
+\caption{Fast rotation signal as a function of time for a muon beam with zero emittance, zero bunch length but width a 0.112\% momentum spread.}
+\label{fig:Espread_frs}
+\end{figure}
+
+A realistic beam has on top of the momentum spread a non-zero bunch length...TO FILL... In this case Eq.~(\ref{eq:Espread_frs}) is re-expressed as
+
+\begin{equation}
+1=1
+\end{equation}
+
+Figure~\ref{fig:E_T_spread_frs} shows the fast rotation signal for a beam with zero emittance, non-zero bunch length and non-zero momentum spread.
+One can see that the beam decoheres faster having a longitudinal extension. It is expected since the longitudinal extension can be seen as 
+created by a beam with an momentum spread having undergone an arbitrary number of revolution.
+
+\begin{figure}[bt]
+
+\caption{Fast rotation signal as a function of time for a muon beam with zero emittance, bunch length of 20 ns and momentum spread of 0.112\%.}
+\label{fig:E_T_spread_frs}
+\end{figure}

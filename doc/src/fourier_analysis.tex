@@ -1,3 +1,4 @@
+\newpage
 \section{Fourier Analysis}
 
 ADD CASE INTEGRATING FROM 0 $->$ infinite because it helps to get good intuition
@@ -5,29 +6,32 @@ about the correction for t0 $->$ tS\newline
 
 \subsection{Momentum distribution from fast rotation signal}
 
-The established method for extracting the energy (or equivalently the frequency distribution) is to take the real part of the Fourier transform of the fast rotation signal. Suppose the center of mass of the muon beam first passes the detector at time $t_0$, and the detector starts detecting at some time $t_s>t_0$.  Let $S(t)$ be the fast rotation signal of a muon beam with Gaussian momentum distribution. Then  
+The established method in~\cite{orlov} for extracting the momentum (or equivalently the frequency or radius distribution) is to take the real part of the Fourier transform of the fast rotation signal. Suppose the center of mass of the muon beam first passes the detector at time $t_0$, and the detector starts detecting at some time $t_s>t_0$.  Let $S(t)$ be the fast rotation signal of a muon beam with Gaussian momentum distribution. Then  
 
 \begin{gather}
 \tilde{F}(\omega)=\int^{\infty}_{t_s}S(t)\cos\omega(t-t_0) dt \nonumber \\
 =\sum^{\infty}_{n=0}\int^{\infty}_{t_s}\frac{e^{-(t-(nT+t_0))^2/2\Delta^2_0(nT+t_0)^2}}{\sqrt{2\pi}\Delta_0(nT+t_0)}\cos\omega(t-t_0)dt \nonumber \\ 
-=\sum^{\infty}_{n=0}\frac{e^{-1/2\Delta^2_0}}{2\sqrt{2\pi}\Delta_0(nT+t_0)}\int^{\infty}_{t_s}e^{-t^2/2\Delta^2_0(nT+t_0)^2}e^{t/(nT+t_0)\Delta^2_0}e^{\pm i\omega t}e^{\mp i\omega t_0}dt
+=\sum^{\infty}_{n=0}\frac{e^{-1/2\Delta^2_0}}{2\sqrt{2\pi}\Delta_0(nT+t_0)}\int^{\infty}_{t_s}e^{-t^2/2\Delta^2_0(nT+t_0)^2}e^{t/(nT+t_0)\Delta^2_0}e^{\pm i\omega t}e^{\mp i\omega t_0}dt.
 \end{gather}
 
 
-
-
-From Gradshteyn and Rizhik, we know that 
+From Gradshteyn and Rizhik [??ref??], we know that 
 \begin{equation}
-\int^{\infty}_u\exp\left(-\frac{x^2}{4\beta}-\gamma x\right)dx=\sqrt{\pi\beta}e^{\beta\gamma^2}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left(\gamma\sqrt{\beta}+\frac{u}{2\sqrt{\beta}}\right)\right)
+\int^{\infty}_u\exp\left(-\frac{x^2}{4\beta}-\gamma x\right)dx=\sqrt{\pi\beta}e^{\beta\gamma^2}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left(\gamma\sqrt{\beta}+\frac{u}{2\sqrt{\beta}}\right)\right),
 \end{equation}
 for $\text{Re}(\beta)>0$ and $u\geq0$. Thus the result of using this integral in computing the Fourier transform is $\tilde{F}(\omega)=$ 
 
 \begin{gather}
 \sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)+ \nonumber \\
-\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{-i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}+\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)
+\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{-i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}+\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right).
 \end{gather}
 
-Something to note about $(4)$ is that if we start the sum from say, index $j-1$, then the first $j-1$ spikes of the signal, corresponding to the detector seeing the beam the first $j-1$ turns, will disappear. So the observed signal may be written as \[\sum^{\infty}_{n=j}\frac{\exp[-(t-(nT+t_0))^2/2\Delta^2_0(nT+t_0)^2T^2]}{\sqrt{2\pi}\Delta_0(nT+t_0)T}\] Reindexing the sum gives us 
+Something to note about Eq.~\ref{eq:??}NEED TO REFERENCE LABEL, NO HARD-CODED REFERENCe  
+is that if we start the sum from say, index $j-1$, then the first $j-1$ spikes of the signal, 
+corresponding to the detector seeing the beam the first $j-1$ turns, will disappear. 
+So the observed signal may be written as 
+\[\sum^{\infty}_{n=j}\frac{\exp[-(t-(nT+t_0))^2/2\Delta^2_0(nT+t_0)^2T^2]}{\sqrt{2\pi}\Delta_0(nT+t_0)T}\]. 
+Reindexing the sum gives us 
 
 \begin{equation}
 \sum^{\infty}_{n=0}\frac{\exp[-(t-((n+j)T+t_0))^2/2\Delta^2_0((n+j)T+t_0)^2T^2]}{\sqrt{2\pi}\Delta_0((n+j)T+t_0)T}
