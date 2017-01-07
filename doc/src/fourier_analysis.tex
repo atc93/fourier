@@ -1,20 +1,55 @@
 \newpage
-\section{Fourier Analysis}
+\section{Theory of the Fourier Transform of the Fast Rotation Signal}
 
-ADD CASE INTEGRATING FROM 0 $->$ infinite because it helps to get good intuition
-about the correction for t0 $->$ tS\newline
+\subsection{The case of initially zero bunch length}
 
-\subsection{Momentum distribution from fast rotation signal}
+In this case we have that $\xi(t')=\delta(t')$, so the fast rotation signal becomes \[S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{(n+\theta/2\pi)T}-1\right)}{(n+\theta/2\pi)T}\]
 
-The established method in~\cite{orlov} for extracting the momentum (or equivalently the frequency or radius distribution) is to take the real part of the Fourier transform of the fast rotation signal. Suppose the center of mass of the muon beam first passes the detector at time $t_0$, and the detector starts detecting at some time $t_s>t_0$.  Let $S(t)$ be the fast rotation signal of a muon beam with Gaussian momentum distribution. Then  
+Assuming the bunch evolves such that in the first turn the beam spreads negligibly, the center of mass of the bunch reaches the fiber harp at position $\theta$ at some time $t_0$. This $t_0$ is the time when muons at the magic frequency first reach the detector. Furthermore, we have that $\theta/2\pi=t_0/T$, so we may write 
+
+\begin{equation}
+S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{nT+t_0}-1\right)}{nT+t_0}
+\end{equation}
+
+We next assume that $\mathcal{S}(t)\equiv S(t+t_0)$ is sufficiently well behaved so as to be absolutely integrable on $[0,\infty)$, i.e. $\int^{\infty}_0|\mathcal{S}|dt<\infty$. We also assume that it is piecewise continuous and piecewise differentiable. Note that this means that $\rho(\Delta)$ must satisfy these conditions also. Suppose we extend $\mathcal{S}$ to the entire real line as an even function. It is an established fact that given the conditions just outlined on a function $f(x)$, we may express it as 
+
+\begin{equation}
+f(x)=\frac{1}{\pi}\int^{\infty}_0d\omega\int^{\infty}_{-\infty}f(t)\cos\omega(t-x)dt
+\end{equation}
+
+(See Arfken 15.2 or Nikolsky 16). So we express $\mathcal{S}$ as [\mathcal{S}(t)=\frac{1}{\pi}\int^{\infty}_0d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega(t'-t)dt'\]  But we made $\mathcal{S}$ even, so the formula simplifies to \[\mathcal{S}(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Since the formula above only considers values of $t\geq0$, we may recover $S(t)$:\[S(t+t_0)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0S(t'+t_0)\cos\omega t'dt'=\]\[\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'\Rightarrow\]
+
+\begin{equation}
+S(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega(t-t_0)d\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'
+\end{equation} 
+Let \[\hat{f}(x)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}f(t)e^{ixt}dt\] and \[\tilde{f}(x)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}f(t)e^{-ixt}dt\] These are the Fourier and inverse Fourier transforms of $f(x)$ respectively. It is easy to see that $f=\tilde{\hat{f}}$. We then have that \[\mathcal{S}(t)=\tilde{\hat{\mathcal{S}}}(t)=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')e^{i\omega t'}dt'=\]\[\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')(\cos\omega t'+i\sin\omega t')dt'=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega t'dt'=\] where we used the fact that $\mathcal{S}$ is an even function, and the integral of the product of an even and odd function vanishes. From the preceding expression we now see that $\hat{\mathcal{S}}$ is an even function. So we write \[\frac{1}{2\pi}\int^{\infty}_{-\infty}\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{1}{\pi}\int^{\infty}_0\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Thus 
+
+\begin{equation}
+\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt
+\end{equation} 
+is the Fourier transform of $S$. So if we're given $\hat{S}(\omega)$, we may express $S$ as 
+
+\begin{equation}
+S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}(\omega)\cos\omega(t-t_0)d\omega=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\hat{S}(\omega)\cos\omega(t-t_0)d\omega
+\end{equation}
+
+\subsection{Symmetric Bunch Length Distribution $\xi(t')$}
+Consider the fast rotation signal of the previous subsection above; call it $S_0(t)$ for now. We have that given an initial longitudinal distribution $\xi(t')$, \[S(t)=\int\xi(t')S_0(t-t')dt'\] Using $(4)$, we have \[S(t)=\frac{2}{\pi}\int\xi(t')dt'\int^{\infty}_0\cos\omega(t-t'-t_0)d\omega\int^{\infty}_{t_0}S_0(\tilde{t})\cos\omega(\tilde{t}-t_0)d\tilde{t}=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t'-t_0)d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)(\cos\omega(t-t_0)\cos\omega t'+\sin\omega(t-t_0)\sin\omega t')d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t_0)\cos\omega t'd\omega=\]\[\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega\] where we used parity of sine and $\langle\cos\omega t'\rangle=\int\xi(t')\cos\omega t'dt'$. So we have that 
+
+\subsection{Asymmetric Bunch Length Distribution $\xi(t')$}
+
+\subsection{Physical Interpretation of the Fourier Transform of the Fast Rotation Signal}
+%The established method in~\cite{orlov} for extracting the momentum (or equivalently the frequency or radius distribution) is to take the real part of the Fourier transform of the fast rotation signal. Suppose the center of mass of the muon beam first passes the detector at time $t_0$, and the detector starts detecting at some time $t_s>t_0$.  Let $S(t)$ be the fast rotation signal of a muon beam with Gaussian momentum distribution. Then  %
+
+\section{Analysis for a Gaussian Energy Offset Distribution and Initially Zero Bunch Length}
+
+If the energy offset distribution is a Gaussian with width $\Delta_0$, then \[S(t)=\sum^{\infty}_{n=0}\frac{e^{-(t-(nT+t_0))^2/2\Delta^2_0(nT+t_0)^2}}{\sqrt{2\pi}\Delta_0(nT+t_0)}\] Suppose the center of mass of the muon beam first passes the detector at time $t_0$, and the detector starts detecting at some time $t_s>t_0$. Then the Fourier transform of the fast rotation signal is
 
 \begin{gather}
-\tilde{F}(\omega)=\int^{\infty}_{t_s}S(t)\cos\omega(t-t_0) dt \nonumber \\
+\hat{S}(\omega)=\int^{\infty}_{t_s}S(t)\cos\omega(t-t_0) dt \nonumber \\
 =\sum^{\infty}_{n=0}\int^{\infty}_{t_s}\frac{e^{-(t-(nT+t_0))^2/2\Delta^2_0(nT+t_0)^2}}{\sqrt{2\pi}\Delta_0(nT+t_0)}\cos\omega(t-t_0)dt \nonumber \\ 
 =\sum^{\infty}_{n=0}\frac{e^{-1/2\Delta^2_0}}{2\sqrt{2\pi}\Delta_0(nT+t_0)}\int^{\infty}_{t_s}e^{-t^2/2\Delta^2_0(nT+t_0)^2}e^{t/(nT+t_0)\Delta^2_0}e^{\pm i\omega t}e^{\mp i\omega t_0}dt.
 \end{gather}
-
-
 From Gradshteyn and Rizhik [??ref??], we know that 
 \begin{equation}
 \int^{\infty}_u\exp\left(-\frac{x^2}{4\beta}-\gamma x\right)dx=\sqrt{\pi\beta}e^{\beta\gamma^2}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left(\gamma\sqrt{\beta}+\frac{u}{2\sqrt{\beta}}\right)\right),
@@ -37,7 +72,7 @@ Reindexing the sum gives us
 \sum^{\infty}_{n=0}\frac{\exp[-(t-((n+j)T+t_0))^2/2\Delta^2_0((n+j)T+t_0)^2T^2]}{\sqrt{2\pi}\Delta_0((n+j)T+t_0)T}
 \end{equation}
 
-Given $t_s$, $t_0$, and $T$, the corresponding starting index in the expression for $S(t)$ is $m=\lceil{(t_s-t_0)/T}\rceil$. Hence the immediately observed frequency spectrum can also be expressed as $\tilde{F}(\omega)=$ 
+Given $t_s$, $t_0$, and $T$, the corresponding starting index in the expression for $S(t)$ is $m=\lceil{(t_s-t_0)/T}\rceil$. Hence the immediately observed frequency spectrum can also be expressed as $\hat{S}(\omega)=$ 
 
 \begin{gather}
 \sum^{\infty}_{n=m}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)+ \nonumber \\
