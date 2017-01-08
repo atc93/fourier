@@ -17,7 +17,7 @@ We next assume that $\mathcal{S}(t)\equiv S(t+t_0)$ is sufficiently well behaved
 f(x)=\frac{1}{\pi}\int^{\infty}_0d\omega\int^{\infty}_{-\infty}f(t)\cos\omega(t-x)dt
 \end{equation}
 
-(See Arfken 15.2 or Nikolsky 16). So we express $\mathcal{S}$ as [\mathcal{S}(t)=\frac{1}{\pi}\int^{\infty}_0d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega(t'-t)dt'\]  But we made $\mathcal{S}$ even, so the formula simplifies to \[\mathcal{S}(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Since the formula above only considers values of $t\geq0$, we may recover $S(t)$:\[S(t+t_0)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0S(t'+t_0)\cos\omega t'dt'=\]\[\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'\Rightarrow\]
+(See Arfken 15.2 or Nikolsky 16). So we express $\mathcal{S}$ as \[\mathcal{S}(t)=\frac{1}{\pi}\int^{\infty}_0d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega(t'-t)dt'\]  But we made $\mathcal{S}$ even, so the formula simplifies to \[\mathcal{S}(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Since the formula above only considers values of $t\geq0$, we may recover $S(t)$:\[S(t+t_0)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0S(t'+t_0)\cos\omega t'dt'=\]\[\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'\Rightarrow\]
 
 \begin{equation}
 S(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega(t-t_0)d\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'
