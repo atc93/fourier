@@ -1,28 +1,34 @@
 \newpage
 \section{Theory of the Fourier Transform of the Fast Rotation Signal}
 
+\subsection{Mathematical Preliminaries}
+
+\begin{definition}[Fourier's transform and inverse transform]
+Given a function $f$, its Fourier transform is \[\hat{f}(x)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}f(t)e^{ixt}dt\] and its inverse Fourier transform is \[\tilde{f}(x)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}f(t)e^{-ixt}dt\] If $f$ is absolutely integrable, then the Fourier transforms of $f$ always exist. It is easy to check that $f=\tilde{\hat{f}}=\hat{\tilde{f}}$.
+\end{definition}
+
+\begin{theorem}
+For any piecewise continuous, piecewise differentiable, and absolutely integrable function $f$, the following equality holds: \[f(x)=\frac{1}{\pi}\int^{\infty}_0d\omega\int^{\infty}_{-\infty}f(t)\cos\omega(t-x)dt\]
+\end{theorem}
+
+\begin{theorem}[Convolution Theorem]
+The convolution of two functions $f$ and $g$ is defined to be \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau\] The convolution theorem states that \[\widehat{f\ast g}=\hat{f}\hat{g} \text{ and } \widetilde{f\ast g}=\tilde{f}\tilde{g}\]
+\end{theorem} 
+
 \subsection{The case of initially zero bunch length}
 
 In this case we have that $\xi(t')=\delta(t')$, so the fast rotation signal becomes \[S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{(n+\theta/2\pi)T}-1\right)}{(n+\theta/2\pi)T}\]
-
 Assuming the bunch evolves such that in the first turn the beam spreads negligibly, the center of mass of the bunch reaches the fiber harp at position $\theta$ at some time $t_0$. This $t_0$ is the time when muons at the magic frequency first reach the detector. Furthermore, we have that $\theta/2\pi=t_0/T$, so we may write 
 
 \begin{equation}
 S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{nT+t_0}-1\right)}{nT+t_0}
 \end{equation}
-
-We next assume that $\mathcal{S}(t)\equiv S(t+t_0)$ is sufficiently well behaved so as to be absolutely integrable on $[0,\infty)$, i.e. $\int^{\infty}_0|\mathcal{S}|dt<\infty$. We also assume that it is piecewise continuous and piecewise differentiable. Note that this means that $\rho(\Delta)$ must satisfy these conditions also. Suppose we extend $\mathcal{S}$ to the entire real line as an even function. It is an established fact that given the conditions just outlined on a function $f(x)$, we may express it as 
-
-\begin{equation}
-f(x)=\frac{1}{\pi}\int^{\infty}_0d\omega\int^{\infty}_{-\infty}f(t)\cos\omega(t-x)dt
-\end{equation}
-
-(See Arfken 15.2 or Nikolsky 16). So we express $\mathcal{S}$ as \[\mathcal{S}(t)=\frac{1}{\pi}\int^{\infty}_0d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega(t'-t)dt'\]  But we made $\mathcal{S}$ even, so the formula simplifies to \[\mathcal{S}(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Since the formula above only considers values of $t\geq0$, we may recover $S(t)$:\[S(t+t_0)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0S(t'+t_0)\cos\omega t'dt'=\]\[\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'\Rightarrow\]
+We next assume that $\mathcal{S}(t)\equiv S(t+t_0)$ is sufficiently well behaved so as to be absolutely integrable on $[0,\infty)$, as well as piecewise continuous and piecewise differentiable. Note that this means that $\rho(\Delta)$ must satisfy these conditions also. Suppose we extend $\mathcal{S}$ to the entire real line as an even function. By Theorem 1, we may express $\mathcal{S}$ as \[\mathcal{S}(t)=\frac{1}{\pi}\int^{\infty}_0d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega(t'-t)dt'\]  But we made $\mathcal{S}$ even, so the expression simplifies to \[\mathcal{S}(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Since the formula above only considers values of $t\geq0$, we may recover $S(t)$:\[S(t+t_0)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0S(t'+t_0)\cos\omega t'dt'=\]\[\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'\Rightarrow\]
 
 \begin{equation}
 S(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega(t-t_0)d\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'
 \end{equation} 
-Let \[\hat{f}(x)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}f(t)e^{ixt}dt\] and \[\tilde{f}(x)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}f(t)e^{-ixt}dt\] These are the Fourier and inverse Fourier transforms of $f(x)$ respectively. It is easy to see that $f=\tilde{\hat{f}}$. We then have that \[\mathcal{S}(t)=\tilde{\hat{\mathcal{S}}}(t)=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')e^{i\omega t'}dt'=\]\[\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')(\cos\omega t'+i\sin\omega t')dt'=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega t'dt'=\] where we used the fact that $\mathcal{S}$ is an even function, and the integral of the product of an even and odd function vanishes. From the preceding expression we now see that $\hat{\mathcal{S}}$ is an even function. So we write \[\frac{1}{2\pi}\int^{\infty}_{-\infty}\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{1}{\pi}\int^{\infty}_0\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Thus 
+We then have that \[\mathcal{S}(t)=\tilde{\hat{\mathcal{S}}}(t)=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')e^{i\omega t'}dt'=\]\[\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')(\cos\omega t'+i\sin\omega t')dt'=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega t'dt'=\] where we used the fact that $\mathcal{S}$ is an even function, and the integral of the product of an even and odd function vanishes. From the preceding expression we now see that $\hat{\mathcal{S}}$ is an even function. So we write \[\frac{1}{2\pi}\int^{\infty}_{-\infty}\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{1}{\pi}\int^{\infty}_0\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Thus 
 
 \begin{equation}
 \hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt
@@ -34,11 +40,13 @@ S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}(\omega)\cos\omega(t-t_0)d\omega=
 \end{equation}
 
 \subsection{Symmetric Bunch Length Distribution $\xi(t')$}
-Consider the fast rotation signal of the previous subsection above; call it $S_0(t)$ for now. We have that given an initial longitudinal distribution $\xi(t')$, \[S(t)=\int\xi(t')S_0(t-t')dt'\] Using $(4)$, we have \[S(t)=\frac{2}{\pi}\int\xi(t')dt'\int^{\infty}_0\cos\omega(t-t'-t_0)d\omega\int^{\infty}_{t_0}S_0(\tilde{t})\cos\omega(\tilde{t}-t_0)d\tilde{t}=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t'-t_0)d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)(\cos\omega(t-t_0)\cos\omega t'+\sin\omega(t-t_0)\sin\omega t')d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t_0)\cos\omega t'd\omega=\]\[\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega\] where we used parity of sine and $\langle\cos\omega t'\rangle=\int\xi(t')\cos\omega t'dt'$. So we have that 
+Consider the fast rotation signal of the previous subsection above; call it $S_0(t)$ for now. We have that given an initial longitudinal distribution $\xi(t')$, \[S(t)=\int\xi(t')S_0(t-t')dt'=(\xi\ast S_0)(t)\] where $\ast$ is the convolution operator. If the support of $\xi$ is $(t_1,t_2)$, then the support of $S(t)$ is $(t_0+t_1,\infty)$ (the support of $S_0(t)$ is $(t_0,\infty)$) Using $(4)$, we have \[S(t)=\frac{2}{\pi}\int\xi(t')dt'\int^{\infty}_0\cos\omega(t-t'-t_0)d\omega\int^{\infty}_{t_0}S_0(\tilde{t})\cos\omega(\tilde{t}-t_0)d\tilde{t}=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t'-t_0)d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)(\cos\omega(t-t_0)\cos\omega t'+\sin\omega(t-t_0)\sin\omega t')d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t_0)\cos\omega t'd\omega=\]\[\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega\] where we used parity of sine and $\langle\cos\omega t'\rangle=\int\xi(t')\cos\omega t'dt'$. So we have that...
 
 \subsection{Asymmetric Bunch Length Distribution $\xi(t')$}
 
 \subsection{Physical Interpretation of the Fourier Transform of the Fast Rotation Signal}
+
+Taken directly, the Fourier transform of the fast rotation signal presents the relative amount of different frequency cosines present in the fast rotation signal. But the fast rotation signal is a result of the revolution of muons with frequencies determined by a distribution. This distribution remains fixed in time...
 %The established method in~\cite{orlov} for extracting the momentum (or equivalently the frequency or radius distribution) is to take the real part of the Fourier transform of the fast rotation signal. Suppose the center of mass of the muon beam first passes the detector at time $t_0$, and the detector starts detecting at some time $t_s>t_0$.  Let $S(t)$ be the fast rotation signal of a muon beam with Gaussian momentum distribution. Then  %
 
 \section{Analysis for a Gaussian Energy Offset Distribution and Initially Zero Bunch Length}
@@ -54,7 +62,7 @@ From Gradshteyn and Rizhik [??ref??], we know that
 \begin{equation}
 \int^{\infty}_u\exp\left(-\frac{x^2}{4\beta}-\gamma x\right)dx=\sqrt{\pi\beta}e^{\beta\gamma^2}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left(\gamma\sqrt{\beta}+\frac{u}{2\sqrt{\beta}}\right)\right),
 \end{equation}
-for $\text{Re}(\beta)>0$ and $u\geq0$. Thus the result of using this integral in computing the Fourier transform is $\tilde{F}(\omega)=$ 
+for $\text{Re}(\beta)>0$ and $u\geq0$. Thus the result of using this integral in computing the Fourier transform is $\hat{S}(\omega)=$ 
 
 \begin{gather}
 \sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)+ \nonumber \\
@@ -105,7 +113,7 @@ In the vicinity of the magic frequency, $\Delta$ is expected to be parabolic. Lo
 
 \subsection{Investigation of the Established Method for Extracting $\Delta$}
 
-The established method for extracting $\Delta$ asserts that we may extract it by using $\tilde{F}(\omega)$. We have that  \[\Delta(\omega)=\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt\] The idea is that although we do not observe $S(t)$ for times $t_0<t<t_s$, we may reasonably approximate $S(t)$ on this interval of time:\[S(t)=\int \tilde{F}(f')\cos2\pi f'(t-t_0)df'\] Substituting this expression for $S(t)$ into the integral for $\Delta$, we have \[\Delta(f)=\iint^{t_s}_{t_0}\tilde{F}(f')\cos2\pi f'(t-t_0)\cos2\pi f(t-t_0)dtdf'=\]\[\frac{A}{2\pi^2}\int \tilde{F}(f')\left(\frac{\sin2\pi(f-f')(t_s-t_0)}{f-f'}+\frac{\sin2\pi(f+f')(t_s-t_0)}{f+f'}\right)df'\] We may ignore the second term in the parentheses as their contribution is negligible. Thus \[\Delta(f,t_s)=\frac{A}{2\pi^2}\int \tilde{F}(f')\frac{\sin2\pi(f-f')(t_s-t_0)}{f-f'}df'\]
+The established method for extracting $\Delta$ asserts that we may extract it by using $\hat{S}(\omega)$. We have that  \[\Delta(\omega)=\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt\] The idea is that although we do not observe $S(t)$ for times $t_0<t<t_s$, we may reasonably approximate $S(t)$ on this interval of time:\[S(t)=\int \hat{S}(f')\cos2\pi f'(t-t_0)df'\] Substituting this expression for $S(t)$ into the integral for $\Delta$, we have \[\Delta(f)=\iint^{t_s}_{t_0}\hat{S}(f')\cos2\pi f'(t-t_0)\cos2\pi f(t-t_0)dtdf'=\]\[\frac{A}{2\pi^2}\int \hat{S}(f')\left(\frac{\sin2\pi(f-f')(t_s-t_0)}{f-f'}+\frac{\sin2\pi(f+f')(t_s-t_0)}{f+f'}\right)df'\] We may ignore the second term in the parentheses as their contribution is negligible. Thus \[\Delta(f,t_s)=\frac{A}{2\pi^2}\int \hat{S}(f')\frac{\sin2\pi(f-f')(t_s-t_0)}{f-f'}df'\]
 
 
-The established method for extracting $\Delta$ asserts that we may get \[\Delta(\omega)=2\pi(t_s-t_0)\int^{\infty}_{-\infty}F(\omega')\frac{\sin(\omega-\omega')(t_s-t_0)}{(\omega-\omega')(t_s-t_0)}d\omega'\] where $F(\omega')$ is the frequency distribution extracted from the immediate detector data, with no corrections applied. For small $\omega-\omega')(t_s-t_0)$, we may approximate the integral using the fact that $\text{sinc}(x)=1-x^2/6$ for $x<<1$. Then \[\Delta(\omega)\approx2\pi(t_s-t_0)\int^{\infty}_{-\infty}F(\omega')\left(1-\frac{(\omega-\omega')^2(t_s-t_0)^2}{6}\right)d\omega'\]\[=2\pi(t_s-t_0)\int^{\infty}_{-\infty}F(\omega')d\omega'-\frac{2\pi(t_s-t_0)^3}{6}\int^{\infty}_{-\infty}F(\omega')(\omega^2-2\omega\omega'+\omega'^2)d\omega'\]
+The established method for extracting $\Delta$ asserts that we may get \[\Delta(\omega)=2\pi(t_s-t_0)\int^{\infty}_{-\infty}\hat{S}(\omega')\frac{\sin(\omega-\omega')(t_s-t_0)}{(\omega-\omega')(t_s-t_0)}d\omega'\] where $\hat{S}(\omega')$ is the frequency distribution extracted from the immediate detector data, with no corrections applied. For small $\omega-\omega')(t_s-t_0)$, we may approximate the integral using the fact that $\text{sinc}(x)=1-x^2/6$ for $x<<1$. Then \[\Delta(\omega)\approx2\pi(t_s-t_0)\int^{\infty}_{-\infty}\hat{S}(\omega')\left(1-\frac{(\omega-\omega')^2(t_s-t_0)^2}{6}\right)d\omega'\]\[=2\pi(t_s-t_0)\int^{\infty}_{-\infty}\hat{S}(\omega')d\omega'-\frac{2\pi(t_s-t_0)^3}{6}\int^{\infty}_{-\infty}\hat{S}(\omega')(\omega^2-2\omega\omega'+\omega'^2)d\omega'\]
