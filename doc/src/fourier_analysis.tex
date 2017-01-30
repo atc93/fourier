@@ -17,40 +17,57 @@ If $f$ is even, then Fourier's integral simplifies to \[f(x)=\frac{2}{\pi}\int^{
 The convolution of two functions $f$ and $g$ is defined to be \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau\] The convolution theorem states that \[\widehat{f\ast g}=\hat{f}\hat{g} \text{ and } \widetilde{f\ast g}=\tilde{f}\tilde{g}\] 
 \end{theorem}
 
-Suppose the supports of $f$ and $g$ are $(t_1,t_2)$ and $(t_3,t_4)$. Then \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau=\int^{t_2}_{t_1}f(\tau)g(t-\tau)d\tau\] As $\tau$ increases from $t_1$ to $t_2$, the argument of $g(t-\tau)$ decreases from $t-t_1$ to $t-t_2$. Therefore the integrand vanishes if $t$ is such that $t-t_1>t_3$ or $t-t_2<t_4$. Hence the support of $(f\ast g)(t)$ is $(t_1+t_3,t_2+t_4)$.
+Suppose the supports of $f$ and $g$ are $(t_1,t_2)$ and $(t_3,t_4)$, respectively. Then \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau=\int^{t_2}_{t_1}f(\tau)g(t-\tau)d\tau\] As $\tau$ increases from $t_1$ to $t_2$, the argument of $g(t-\tau)$ decreases from $t-t_1$ to $t-t_2$. Therefore the integrand vanishes if $t$ is such that $t-t_1<t_3$ or $t-t_2>t_4$. Hence the support of $(f\ast g)(t)$ is $(t_1+t_3,t_2+t_4)$.
 
 \subsection{The case of initially zero bunch length}
 
 In this case we have that $\xi(t')=\delta(t')$, so the fast rotation signal becomes \[S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{(n+\theta/2\pi)T}-1\right)}{(n+\theta/2\pi)T}\]
 Assuming the bunch evolves such that in the first turn the beam spreads negligibly, the center of mass of the bunch reaches the fiber harp at position $\theta$ at some time $t_0$. This $t_0$ is the time when muons at the magic frequency first reach the detector. Furthermore, we have that $\theta/2\pi=t_0/T$, so we may write 
 
-\begin{equation}
+\[
 S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{nT+t_0}-1\right)}{nT+t_0}
-\end{equation}
+\]
 We next assume that $\mathcal{S}(t)\equiv S(t+t_0)$ is sufficiently well behaved so as to be absolutely integrable on $[0,\infty)$, as well as piecewise continuous and piecewise differentiable. Note that this means that $\rho(\Delta)$ must satisfy these conditions also. Extend $\mathcal{S}$ to the entire real line as an even function. By Theorem 1, we may express $\mathcal{S}$ as \[\mathcal{S}(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] We then recover $S(t)$:\[S(t+t_0)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0S(t'+t_0)\cos\omega t'dt'=\]\[\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'\Rightarrow\]
 
-\begin{equation}
+\[
 S(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega(t-t_0)d\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'
-\end{equation} 
+\] 
 But we also know from Definition 1 that \[\mathcal{S}(t)=\tilde{\hat{\mathcal{S}}}(t)=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')e^{i\omega t'}dt'=\]\[\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')(\cos\omega t'+i\sin\omega t')dt'=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega t'dt'\] where we used the fact that $\mathcal{S}$ is an even function, and the integral of the product of an even and odd function vanishes. From the preceding expression we now see that $\hat{\mathcal{S}}$ is an even function. So we write \[\frac{1}{2\pi}\int^{\infty}_{-\infty}\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{1}{\pi}\int^{\infty}_0\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Thus 
 
 \begin{equation}
 \hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt
+\label{eq:nospreadFT}
 \end{equation} 
 is the Fourier transform of $S$. So if we're given $\hat{S}(\omega)$, we may express $S$ as 
 
 \begin{equation}
 S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}(\omega)\cos\omega(t-t_0)d\omega=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\hat{S}(\omega)\cos\omega(t-t_0)d\omega
+\label{eq:nospreadIFT}
 \end{equation}
 
 \subsection{Bunch Length Distribution $\xi(t')$}
-Consider the fast rotation signal of the previous subsection above; call it $S_0(t)$ for now. We have that given an initial symmetric longitudinal distribution $\xi(t')$, \[S(t)=\int\xi(t')S_0(t-t')dt'=(\xi\ast S_0)(t)\] If the support of $\xi$ is $(t_1,t_2)$, then the support of $S(t)$ is $(t_0+t_1,\infty)$ (the support of $S_0(t)$ is $(t_0,\infty)$). So then we may just apply the reasoning from the previous section to see that \[\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0+t_1}S(t)\cos\omega(t-t_0-t_1)dt\] and \[S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{0}\hat{S}(\omega)\cos\omega(t-t_0-t_1)d\omega\] This is a valid formula if $t_0+t_1\geq0$. In the case that $t_1+t_0\leq0$ or $t_1=-\infty$ there will be a problem, as the muons are injected at $t=0$. But assuming $\xi(t')$ is sufficiently narrow, starting at $t=0$ will not miss much of the signal, making the deformation to the spectrum negligible. Hence in this case we have that \[\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0S(t)\cos\omega tdt\] and \[S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{0}\hat{S}(\omega)\cos\omega td\omega\] We note however that this time \[S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{(n+\theta/2\pi)T}-1\right)}{(n+\theta/2\pi)T}\]%Using $(4)$, we have \[S(t)=\frac{2}{\pi}\int\xi(t')dt'\int^{\infty}_0\cos\omega(t-t'-t_0)d\omega\int^{\infty}_{t_0}S_0(\tilde{t})\cos\omega(\tilde{t}-t_0)d\tilde{t}=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t'-t_0)d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)(\cos\omega(t-t_0)\cos\omega t'+\sin\omega(t-t_0)\sin\omega t')d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t_0)\cos\omega t'd\omega=\]\[\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega\] where we used parity of sine and $\langle\cos\omega t'\rangle=\int\xi(t')\cos\omega t'dt'$. So we have that% 
+Consider the fast rotation signal of the previous subsection above; call it $S_0(t)$ for now. We have that given an initial symmetric longitudinal distribution $\xi(t')$, \[S(t)=\int\xi(t')S_0(t-t')dt'=(\xi\ast S_0)(t)\] If the support of $\xi$ is $(t_1,t_2)$, then the support of $S(t)$ is $(t_0+t_1,\infty)$ (the support of $S_0(t)$ is $(t_0,\infty)$). So then we may just apply the reasoning from the previous section to see that \[\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0+t_1}S(t)\cos\omega(t-t_0-t_1)dt\] and \[S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{0}\hat{S}(\omega)\cos\omega(t-t_0-t_1)d\omega\] This is a valid formula if $t_0+t_1\geq0$. In the case that $t_1+t_0\leq0$ or $t_1=-\infty$ there will be a problem, as the muons are injected at $t=0$. But assuming $\xi(t')$ is sufficiently narrow, starting at $t=0$ will not miss much of the signal, making the deformation to the spectrum negligible. Hence in this case we have that \[\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0S(t)\cos\omega tdt\] and \[S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{0}\hat{S}(\omega)\cos\omega td\omega\] We note however that we now have \[S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{(n+\theta/2\pi)T}-1\right)}{(n+\theta/2\pi)T}\]%Using $(4)$, we have \[S(t)=\frac{2}{\pi}\int\xi(t')dt'\int^{\infty}_0\cos\omega(t-t'-t_0)d\omega\int^{\infty}_{t_0}S_0(\tilde{t})\cos\omega(\tilde{t}-t_0)d\tilde{t}=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t'-t_0)d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)(\cos\omega(t-t_0)\cos\omega t'+\sin\omega(t-t_0)\sin\omega t')d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t_0)\cos\omega t'd\omega=\]\[\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega\] where we used parity of sine and $\langle\cos\omega t'\rangle=\int\xi(t')\cos\omega t'dt'$. So we have that% 
 
 \subsection{Corrections to the Fourier Transform}
 
-If the detector detects the muons at a time $t_s>t_0$, then the resulting Fourier transform of the observed fast rotation signal has a missing component \[\Delta(\omega)=\sqrt{\frac{2}{\pi}}\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt\] while the immediately observed frequency spectrum is \[\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_s}S(t)\cos\omega(t-t_0)dt\] However, we do not observe $S(t)$ on $(t_0,t_s)$, so we need to find a way to correct the frequency spectrum. 
+If the detector detects the muons at a time $t_s>t_0$, then the resulting Fourier transform of the observed fast rotation signal has a missing component 
+\begin{equation}
+\Delta(\omega)=\sqrt{\frac{2}{\pi}}\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt
+\label{eq:Delta}
+\end{equation} while the immediately observed frequency spectrum is 
 
-In order to do this, we first note that the Fourier transform has associated with it an uncertainty principle, namely that $\Delta f\Delta t\sim1$. If $t_s$ isn't too great, we can then expect that the spread of $\Delta(\omega)$ about the magic frequency will be large while the spread of $\hat{S}(\omega)$ will change negligibly. So we may express $S(t)$ using the observed $\hat{S}(\omega)$ through formula $(6)$. Thus we have that \[\Delta(\omega)=\frac{2}{\pi}\int^{t_s}_{t_0}\int^{\infty}_0\hat{S}(\omega')\cos\omega'(t-t_0)\cos\omega(t-t_0)d\omega' dt\] Integrating with respect to $t$ first, we get \[\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega)\left(\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}+\frac{\sin(\omega+\omega')(t_s-t_0)}{\omega+\omega'}\right)d\omega'\] We may neglect the second term in the parentheses, so \[\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega)\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}d\omega'\]
+\begin{equation}
+\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_s}S(t)\cos\omega(t-t_0)dt
+\label{eq:firstapprox}
+\end{equation}
+However, we do not observe $S(t)$ on $(t_0,t_s)$, so we need to find a way to correct the frequency spectrum. 
+
+In order to do this, we first note that the Fourier transform has associated with it an uncertainty principle, namely that $\Delta f\Delta t\sim1$. If $t_s$ isn't too great, we can then expect that the spread of $\Delta(\omega)$ about the magic frequency will be large while the spread of $\hat{S}(\omega)$ will change negligibly. So we may express $S(t)$ using the observed $\hat{S}(\omega)$ through formula$~\eqref{eq:nospreadIFT}$. Thus we have that \[\Delta(\omega)=\frac{2}{\pi}\int^{t_s}_{t_0}\int^{\infty}_0\hat{S}(\omega')\cos\omega'(t-t_0)\cos\omega(t-t_0)d\omega' dt\] Integrating with respect to $t$ first, we get \[\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega)\left(\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}+\frac{\sin(\omega+\omega')(t_s-t_0)}{\omega+\omega'}\right)d\omega'\] We may neglect the second term in the parentheses, as we are interested in frequencies $\omega$ such that $|\omega-\omega'|<<\omega+\omega'$, so 
+
+\begin{equation}
+\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega)\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}d\omega'
+\label{eq:approxDelta}
+\end{equation}
 
 \subsection{Physical Interpretation of the Fourier Transform of the Fast Rotation Signal}
 
@@ -72,7 +89,7 @@ From Gradshteyn and Rizhik, we know that
 \begin{equation}
 \int^{\infty}_u\exp\left(-\frac{x^2}{4\beta}-\gamma x\right)dx=\sqrt{\pi\beta}e^{\beta\gamma^2}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left(\gamma\sqrt{\beta}+\frac{u}{2\sqrt{\beta}}\right)\right)
 \end{equation}
-for $\text{Re}(\beta)>0$ and $u\geq0$. Thus the result of using this integral in computing the Fourier transform is $\tilde{F}(\omega)=$ 
+for $\text{Re}(\beta)>0$ and $u\geq0$. Thus the result of using this integral in computing the Fourier transform is $\hat{S}(\omega)=$ 
 
 \begin{gather}
 \sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)+ \nonumber \\
@@ -90,14 +107,9 @@ Given $t_s$, $t_0$, and $T$, the corresponding starting index in the expression 
 \begin{gather}
 \sum^{\infty}_{n=m}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)+ \nonumber \\
 \sum^{\infty}_{n=m}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{-i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}+\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)
-\end{gather}
+\end{gather}\label{eq:approxFreqDistribGaussianEnergy}
 
-\subsection{Corrections to the Fourier transform} The detector in the section above started to detect the muon beam at a time $t_s>t_0$. In the time that the detector does not detect the beam, some decoherence of the fast rotation signal occurs, resulting in lost frequency content in the Fourier transform above. This results in distortions of the frequency spectrum.  Consider the integral of $S(t)$ between times $t_0$ and $t_s$: 
-\begin{equation}
-\Delta(\omega)=\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt
-\end{equation}
-
-This is the part of the frequency spectrum that the detector fails to account for. Let's take a closer look at $\Delta$. \[\Delta(\omega)=\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt\]\[=\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt-\int^{\infty}_{t_s}S(t)\cos\omega(t-t_0)dt\] Using the integral given in Gradshteyn and Ryzhik, we have 
+\subsection{Corrections to the Fourier transform} The detector in the section above started to detect the muon beam at a time $t_s>t_0$. This results in some lost frequency content in the Fourier transform above, creating distortions of the frequency spectrum. The missing part of the frequency spectrum is described by formula$~\eqref{eq:Delta}$. Let's take a closer look at $\Delta$. \[\Delta(\omega)=\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt\]\[=\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt-\int^{\infty}_{t_s}S(t)\cos\omega(t-t_0)dt\] Using the integral given in Gradshteyn and Ryzhik, we have 
 
 \begin{gather}
 \sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_0}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)+ \nonumber \\
@@ -106,7 +118,7 @@ This is the part of the frequency spectrum that the detector fails to account fo
 -\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{-i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}+\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)
 \end{gather}
 
-But keeping in mind the reasoning leading to $(8)$ and $(9)$, we may instead write $\Delta(\omega)=$
+But keeping in mind the reasoning leading to$~\eqref{eq:approxFreqDistribGaussianEnergy}$, we may instead write $\Delta(\omega)=$
 \begin{gather}
 \sum^{m-1}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_0}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)\nonumber+\\ 
 \sum^{m-1}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{-i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}+\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_0}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)\nonumber \\
