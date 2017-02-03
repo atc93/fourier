@@ -1,0 +1,14 @@
+osc_pickup: wiggler, l=1.4, b_max=0., n_pole=8
+osc_kicker: wiggler, l=1.4, b_max=0., n_pole=8
+osc_b1: sbend, l=0.5
+osc_b2: sbend, l=0.5
+osc_q1w: quadrupole, l=0.5, k1=-0.2
+osc_q1e: quadrupole, l=0.5, k1=-0.2
+osc_d1: drift, l=0.2
+osc_d2: drift, l=0.5
+osc_d3: drift, l=0.5
+osc_d4: drift, l=0.55
+osc_m1: marker
+osc_line_west: line=(osc_pickup,osc_d1,osc_b1,osc_d2,osc_b2,osc_d3,osc_q1w, osc_d4) 
+osc_line_east: line=(osc_d4, osc_q1e, osc_d3, osc_b2, osc_d2, osc_b1, osc_d1, osc_kicker)
+osc_line: line=(ip_l0,osc_line_west, osc_line_east,ip_l0_end)

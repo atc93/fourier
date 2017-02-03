@@ -1,0 +1,178 @@
+\section{Momentum spread}
+The energy dependence of the betatron tunes and the revolution frequency, contribute to the evolution 
+and decoherence of betatron motion due to the finite energy spread in the beam.
+In a cyclotron with electrostatic focusing
+distributed uniformly around the ring,
+the tune depends on the focusing index $n$ according to
+\begin{eqnarray*}
+Q_x &=& \sqrt{1-n}\\
+Q_y &=& \sqrt{n}
+\end{eqnarray*}
+where $$n =\left(\frac{r}{v_s B}\right)\partder{E_r}{r}$$
+$r$ is the radius of curvature of the on momentum muon in magnetic field $B$ and $v_s$ is the azimuthal
+velocity, that is $r = \frac{\gamma m v_s}{q B} = \frac{p}{qB}$.
+The dependence of betatron tune on energy, (chromaticity) follows from
+$$n(\delta) = \frac{p(1+\delta)}{qv_s B^2}\partder{E_r}{r}$$ so
+that
+\begin{eqnarray*}
+\partder{Q_x}{\delta} &=&-\frac{1}{2}\frac{1}{ \sqrt{1-n}}\partder{n}{p} = -\frac{n}{2\sqrt{1-n}} = \frac{Q_y^2}{2Q_x} =-0.103\\
+\partder{Q_y}{\delta} &=& \frac{n}{2\sqrt{n}}=\onehalf Q_y = 0.215 
+\end{eqnarray*}
+evaluated for $n=0.185$.
+An important assumption in the above is that the electrostatic quadrupoles extend continuously around the circumference of the ring
+which is not the case in the g-2 ring. To understand the implications for chromaticity it is useful to 
+distiguish three contributions; energy dependence of quadrupole focal length, energy dependence of pathlength
+and effect of quad curvature.
+
+The horizontal and vertical tunes are written in terms $\beta$-function
+\begin{eqnarray}
+Q_{h/v} = \frac{1}{2\pi}\oint \frac{1}{\beta_{h/v}} ds\nonumber\\
+\end{eqnarray}
+In a ring with constant $\beta$ ($\der{\beta}{s}=0$), we have that $K=1/\beta^2$ and the tunes are
+\begin{eqnarray}
+Q_{h/v} = \frac{1}{2\pi}\oint  \sqrt{K_{x/y}} ds \nonumber\\
+Q_{h/v} =  \sqrt{K_{x/y}} R \label{eq:tunechrom}
+\end{eqnarray}
+where 
+\begin{eqnarray*}
+K_x &=& \frac{1}{\rho^2} - \frac{q}{mv^2}\partder{E}{r} = \frac{1}{\rho^2}-J\\
+K_y &=& \frac{q}{mv^2}\partder{E}{y}\\
+\end{eqnarray*}
+where for convenience we define $J \equiv \frac{q}{mv^2}\partder{E}{r}=n$ and note that $Q_y = \sqrt{J}$.
+
+The three distinct contributions to the chromaticity are enumerated.
+\begin{enumerate} 
+\item
+The effective gradient (K) decreases with
+energy, increasing horizontal and decreasing the vertical tune.
+\begin{eqnarray*}
+\partder{K^{1/2}_x}{\delta} &=& \onehalf K^{-1/2} \partder{K}{\delta} = -\frac{(\rho^{-2} -\onehalf J )}{\sqrt{K}} = -\sqrt{K} - \frac{J}{\sqrt{K}} = -Q_x - \frac{Q_y^2}{2Q_x}\\ 
+\partder{K^{1/2}_y}{\delta} &=&  -\onehalf\sqrt{K} = -\onehalf Q_y
+\end{eqnarray*} 
+where we have assumed rectangular coordinates so that $\partder{E_r}{r}=\partder{E_x}{x}=-\partder{E_y}{y}$
+\item The path length increases with energy, $\Delta P = 2\pi\eta \delta$. 
+If the inner and outer quad plates
+have equal angular length, then a longer path corresponds to longer quads and more focusing.
+$$\partder{Q_{h/v}}{\delta} =  \sqrt{K_{x/y}}  \eta = \frac{\eta}{R}Q_{h,v}$$
+where $R$ is the magic radius. If the quad plates have equal linear length (rather than equal angular length),
+then there is no pathlength dependent focusing. The effect of pathlength will depend on the details of the fringe field at the ends of the quads.
+\item The sextupole component of the quad fields couples to the tune via the dispersion.
+If the quad plates have no curvature, then the quadrupole symmetry precludes a sextupole moment.
+But there is curvature in the g-2 quads, and solutions to Laplace's equation in cylindrical coordinates
+are guaranteed a sextupole component.
+In cartesian coordinates the quadrupole potential $$V(x,y) = \onehalf k( x^2 - y^2)$$ gives 
+$${\bf E} = -{\bf\nabla} V = -kx{\bf\hat x} + ky{\bf\hat y}$$ and $\partder{E_x}{x}+\partder{E_y}{y}=0$.
+In cylindrical coordinates, a solution (but not a unique solution) to the Laplace equation with lowest order term linear in displacement, all of the nonlinearity
+in the radial coordinate, and a strictly linear vertical dependence is
+$$V = k\left(\onehalf(r^2-1) - r_0\ln \frac{r}{r_0} - y^2\right)$$
+and 
+\begin{eqnarray*}
+{\bf E} &=& \onehalf k\left((r-\frac{r_0^2}{r}){\bf \hat r} -2y{\bf \hat y}\right)\\
+\end{eqnarray*}
+With the substitution $r=r_0+x$, where $r_0$ is the magic radius,
+\begin{eqnarray*}
+{\bf E} &=& \onehalf k\left((r_0+x-\frac{r_0^2}{r_0}[1-\frac{x}{r_0}+\onehalf \left(\frac{x}{r_0}\right)^2+\ldots]){\bf \hat r} -2y{\bf \hat y}\right)\\
+ &\sim&  k\left(x- \frac{x^2}{2r_0}+\ldots){\bf \hat r} -y{\bf \hat y}\right)\\
+\end{eqnarray*}
+The closed orbit for an off energy particle is shifted to $x\rightarrow \eta\delta + x$ and the radial component of the field
+for an off energy muon becomes
+\begin{eqnarray*}
+E_r &=& k\left(x+\eta\delta-\frac{1}{2r_0}(x+\eta\delta)^2\right)\\
+\partder{E_r}{x} &\rightarrow&  k(1-\frac{1}{r_0}\eta\delta)\\
+\partder{\sqrt{K_x}}{\delta} &=& -\sqrt{K_x}\frac{\eta}{2r_0}
+\end{eqnarray*}
+The contribution to the chromaticity due to the quadratic component of the electric field is
+$$\partder{Q_{h}}{\delta} = -\frac{\eta}{2r_0}\sqrt{K_x} = \frac{\eta}{2r_0}Q_x$$
+\end{enumerate}
+In summary, contributions to chromaticity include \begin{enumerate}
+\item the energy dependence of the quad gradient and bend curvature
+\item energy dependence of path length
+\item  nonlinearity associated with the curvature.
+\end{enumerate}
+Assuming equal angular length of inner and outer plates and strictly linear vertical quad focusing (so that all of the nonlinearity due to curvature appears in the horizontal)
+the sum of the contributions is
+$$\partder{Q_{x}}{\delta} = -Q_{x}-\frac{Q_y^2}{2Q_x} +Q_x\frac{\eta}{r_0} -Q_x\frac{\eta}{2r_0}$$
+$$ \partder{Q_y}{\delta}= -Q_{y}\left(\onehalf-\frac{\eta}{r_0}\right)$$
+It turns out that for continuous focusing, $$\eta = \frac{1}{Kr_0} = \frac{r_0}{Q_x^2}$$
+Then
+$$\partder{Q_{x}}{\delta} = -Q_{x}-\frac{Q_y^2}{2Q_x} +\frac{1}{Q_x}(1-\onehalf)=\frac{-1}{2Q_x}+\frac{1}{Q_x}(1-\onehalf)=0$$
+Evidently, if the inner and outer quad plates are equal angular length and if the quadratic correction to the quad field
+is restricted to the radial direction so the vertical is linear, then the horizontal chromaticity is identically zero.
+And the vertical can be written
+$$ \partder{Q_v}{\delta}= -Q_{y}\left(\onehalf-\frac{1}{Q_x^2}\right)$$
+If, on the other hand, angular length is different for inner and outer plates, and/or Laplace's equation in cylindrical coordinates
+is satisfied by some nonlinearity in the vertical, rather than the horizontal, the chromatities will be very different.
+In order to get the chromaticity right, we need a 3D map of the quad fields that includes end effects as well as curvature.
+
+
+%We rewrite Equation ~\ref{eq:tunechrom} in terms of field index
+%\begin{eqnarray*}
+%Q_{h/v} &=& \frac{1}{4\pi}\oint \beta_{h/v} \frac{v_s B n}{pr} ds\\
+%&\sim& \frac{1}{4\pi}\beta_{h/v} \frac{v_s B n}{pr} 2\pi r \\
+%&\sim& \frac{1}{2}\beta_{h/v} \frac{v_s B n}{p} = -0.103/0.215
+%\end{eqnarray*}
+
+
+%Note that the horizontal tune decreases with energy while the vertical tune increases with energy.
+%In the g-2 ring the quadrupoles extend over only $156^{\circ}$ of the circumference and
+%a more careful calculation that accounts for the nonuniformity of the $\beta$-functions gives
+%\begin{eqnarray*}
+%Q^\prime_x&=& -0.14\\
+%Q^\prime_y&=& 0.31
+%\end{eqnarray*}
+
+Finally, suppose that all of the particles in the initial distribution appear in the ring at the
+same point in space and time but with a spread in energy. The particles will execute betatron
+oscillations with a frequency that depends on the energy, namely $Q_x(\delta) = Q^\prime_x\delta$
+and $Q_y(\delta) = Q_y^\prime \delta$, where $\delta$ is the fractional energy offset. 
+The particles will circulate with cyclotron frequencies
+$\frac{1}{\omega(\delta)} = \frac{1+\delta}{\omega_0}$.
+The betatron frequency
+\begin{eqnarray*}
+\omega_\beta &=& Q\omega \ \ \ {\rm becomes} \\
+\omega_\beta &\rightarrow& (Q+Q^\prime\Delta)\frac{\omega_0}{1+\Delta}\\  
+%&\sim& (Q+Q^\prime\delta)\omega_0(1-\delta)\\
+%&\sim& Q\omega_0 +\delta(Q^\prime-Q)\omega_0 
+\end{eqnarray*}
+%The average over all momenta is
+%\begin{eqnarray*}
+%\langle x \rangle &=& x_0\left(\cos(Q\omega_0 t)\langle\cos(Q^\prime-Q)\delta\omega_0 t\rangle
+%-\sin Q\omega_0 t \langle \sin(Q^\prime-Q)\delta\omega_0 t\rangle\right)\\
+% &=& x_0\left(\cos(Q\omega_0 t)\sum_{\delta_i}\cos(Q^\prime-Q)\delta_i\omega_0 t
+%-\sin Q\omega_0 t\sum_{\delta_i} \sin(Q^\prime-Q)\delta\omega_0 t\right)\\
+%\end{eqnarray*}
+%For any energy distribution symmetric about zero, the ``$\sin$'' term vanishes. 
+
+%\subsection{Flat energy distribution}
+%If the distribution
+%is flat over the range $\pm\delta_0$ then
+%\begin{eqnarray}
+%\sum_{\delta}\cos(Q^\prime-Q)\delta_i\omega_0 t &\rightarrow& \frac{1}{2\delta_0}\int_{-\delta_0}^{\delta_0}
+%\cos (Q^\prime -Q)\delta_i\omega_0 t d\delta\nonumber\\ 
+%&=& \frac{1}{\xi}
+%\left(\sin(\xi \delta_0)+\sin(\xi\delta_0)\right)\nonumber\\
+%&=& 2\frac{\sin\xi \delta_0}{2\delta_0\xi}\label{energy_width}
+%\end{eqnarray}
+%where $\xi = (Q^\prime-Q)\omega_0 t$. According to~\ref{energy_width},
+%the average position of all of the particles is zero when
+%\begin{eqnarray*}
+%\xi\delta_0 &=& \pi \\
+%\rightarrow t&=& \frac{\pi}{(Q^\prime-Q)\omega_0\delta_0}
+%\end{eqnarray*}
+%Let's compute the horizontal and vertical decoherence times in units of the revolution period.
+%\begin{eqnarray*}
+%N_x &=& \frac{\omega_0 t}{2\pi} = \frac{\pi}{(-0.14 - 0.908)2\pi(0.0012)}=909\\
+%N_y &=& \frac{1}{2(0.31-0.43)0.0012} = 3571
+%\end{eqnarray*}
+
+%\subsection{Gaussian energy distribution}
+%If the distribution of energies is Gaussian with width $\delta_0$ then
+%$$x(t) = \delta\eta\cos\left((Q+(Q^\prime-Q)\delta)\omega_0 t\right)$$
+%\begin{eqnarray*}
+%\sum_{\delta}\cos(Q^\prime-Q)\delta_0\omega t&\rightarrow& \frac{1}{\delta_0\sqrt{2\pi}}\int_{-\infty}^\infty\cos\xi\delta {e^{-\frac{1}{2}\frac{\delta^2}{\delta_0^2}}}d\delta\\
+%&=& \frac{1}{2\delta_0\sqrt{2\pi}}
+%\int_{-\infty}^\infty\left(e^{i\xi\delta}+e^{-i\xi\delta}\right) 
+%e^{-\frac{1}{2}\frac{\delta^2}{\delta_0^2}}d\delta\\
+%&=& \frac{2}{2\delta_0\sqrt{2\pi}}e^{-\frac{1}{2}\xi^2\delta_0^2}(\sqrt{2\pi}\delta_0)\\
+%&=& e^{-\frac{1}{2}\xi^2\delta_0^2}
+%\end{eqnarray*}
