@@ -31,12 +31,13 @@
 
 // simulation paramaters
 const double N_muon = 10000000; 	// number of muons to simulate
-const double N_turn = 1;			// how many cyclotron revolution to simulate
-const double p_spread = 0.;//0.112;	// muon momentum distribution spread in %
+const double N_turn = 10;			// how many cyclotron revolution to simulate
+const double p_spread = 0.112;	// muon momentum distribution spread in %
 const double t_spread = 0.;//25;			// muon beam length spread in nano second
 const bool   fillTree = false;  // fill root tree with time, momentum...
-const bool   useMuon = true;		// simulate muons
+const bool   useMuon = false;		// simulate muons
 const bool   useProton = false;		// simulate protons
+const bool 	 useProtonMuon = true;
 
 // physical constants
 const double M_mu = 0.1056583715 ; 								// muon mass in gev
@@ -55,7 +56,7 @@ const double inch = 0.0254;
 const double PI = TMath::Pi();
 
 // debugging mode
-const int DEBUG=1;
+const int DEBUG=0;
 
 // Set moomentum distribution
 const int Gaus		= 1;
@@ -101,25 +102,28 @@ int main() {
 	h_frs->GetXaxis()->SetTitleOffset(1.3);
 	gStyle->SetOptStat(0);
 	TCanvas c; c.cd();
-  string _level="internal simulation";
-  string _atlas_desc="#font[72]{g-2}";
+	string _level="internal simulation";
+	string _atlas_desc="#font[72]{g-2}";
 
-	TH1D *h_freq = new TH1D("h_freq", "freq dist", 500,6.64e6,6.77e6);
+	TH1D *h_freq;
+	if (useMuon) h_freq  = new TH1D("h_freq", "freq dist", 500,6.64e6,6.77e6);
+	else if (useProton) h_freq  = new TH1D("h_freq", "freq dist", 500,6.36e6,6.5e6);
+	else if (useProtonMuon) h_freq  = new TH1D("h_freq", "freq dist", 2000,6.36e6,6.77e6);
 	h_freq->GetXaxis()->SetTitle("Frequency [Hz]");
 	TH1D *h_p		 = new TH1D("h_p", 		"momentum dist", 500,3.06,3.13);
 	h_p->GetXaxis()->SetTitle("Momentum [GeV]");
 
-  TLatex _g;
+	TLatex _g;
 	_g.SetTextSize(0.035);
 
-  //draw horizontal label  
-  string _sh="";
-  _sh+=_atlas_desc+" "+_level;
+	//draw horizontal label  
+	string _sh="";
+	_sh+=_atlas_desc+" "+_level;
 	gPad->Update();
 
 	//drawatlaslabel(c);
-  gPad->SetTicks(1);
-  gPad->SetTicks(1);
+	gPad->SetTicks(1);
+	gPad->SetTicks(1);
 
 	// processing tim book-kepping
 	clock_t t1,t2;
@@ -148,35 +152,69 @@ int main() {
 
 	// Muon loop
 	//cout << " loop over muons\n" << endl;
+	bool switchPtcle = true;
 	for (int i=0; i<N_muon; ++i) {
 
 		// draw a random muon momentum
 		p_ptcl = (1+v_p_spread.at(i))*p_ptcl_magic;
 		h_p->Fill(p_ptcl);
 		// compute particle energy
-		if (useMuon)				E_ptcl = sqrt( p_ptcl * p_ptcl + M_mu * M_mu);
+		if (useProtonMuon) {
+			if (switchPtcle) E_ptcl = sqrt( p_ptcl * p_ptcl + M_mu * M_mu); // Muon
+			else						 E_ptcl = sqrt( p_ptcl * p_ptcl + M_p * M_p);		// Proton
+		}
+		else if (useMuon)				E_ptcl = sqrt( p_ptcl * p_ptcl + M_mu * M_mu);
 		else if (useProton)	E_ptcl = sqrt( p_ptcl * p_ptcl + M_p * M_p);
 		// compute gamma factor
-		if (useMuon)				gamma = E_ptcl / M_mu;
-    else if (useProton) gamma = E_ptcl / M_p;
+		if (useProtonMuon) {
+			if (switchPtcle) gamma = E_ptcl / M_mu; // Muon
+			else             gamma = E_ptcl / M_p;   // Proton
+		}
+		else if (useMuon)				gamma = E_ptcl / M_mu;
+		else if (useProton) gamma = E_ptcl / M_p;
 
 		// turn loop
-		double time1 = 0., time2 = 0.;
+		double timem1 = 0., timem2 = 0.;
+		double timep1 = 0., timep2 = 0.;
 		for (int turn=0; turn<N_turn; ++turn) {
-			if (turn==0) time1=0;
-			else time1 = time2;
+			if (turn==0) {timem1=0; timep1=0;}
+			else {timem1 = timem2; timep1=timep2;}
 			// compute travel time
-			if (useMuon) 		time= ComputeTravelTimeMuon(gamma, turn, p_ptcl, v_t_spread.at(i))*1E6;
-			if (useProton) 	time= ComputeTravelTimeProton(gamma, turn, p_ptcl, v_t_spread.at(i))*1E6;
-			time2 = time;
+			if (useProtonMuon) {
+				if (switchPtcle) 	{
+					time= ComputeTravelTimeMuon(gamma, turn, p_ptcl, v_t_spread.at(i))*1E6; 
+					timem2 = time;
+				} 	// Muon
+				else							{
+					time= ComputeTravelTimeProton(gamma, turn, p_ptcl, v_t_spread.at(i))*1E6; 
+					timep2 = time;
+				}	// Proton
+			}
+			else if (useMuon) 		{time= ComputeTravelTimeMuon(gamma, turn, p_ptcl, v_t_spread.at(i))*1E6; timem2 = time;}
+			else if (useProton) 	{time= ComputeTravelTimeProton(gamma, turn, p_ptcl, v_t_spread.at(i))*1E6; timep2 = time;}
+
 			if (DEBUG) cout << "time = " << time << "   -   turn = " << turn << endl;
-			if (DEBUG) cout << "time2 - time1 = " << time2 - time1 << "   -   turn = " << turn << endl;
+			//if (DEBUG) cout << "time2 - time1 = " << time2 - time1 << "   -   turn = " << turn << endl;
 			// fill ROOT Tree if enabled
 			if (fillTree) tr->Fill();
 			// fill histogram
 			h_frs->Fill(time);
-			h_freq->Fill(1E6*1/(time2-time1));
+			if (useMuon) h_freq->Fill(1E6*1/(timem2-timem1));
+			else if (useProton) h_freq->Fill(1E6*1/(timep2-timep1));
+			else if (useProtonMuon) {
+				h_freq->Fill(1E6*1/(timem2-timem1));
+				h_freq->Fill(1E6*1/(timep2-timep1));
+			}
 		} // end turn loop
+
+		if (useProtonMuon) {
+			if (switchPtcle)  {
+				switchPtcle=false;
+			}   // Muon
+			else              {
+				switchPtcle=true;
+			}
+		}
 
 		// Monitor progress
 		int progress = N_muon / 10;
@@ -194,8 +232,8 @@ int main() {
 	cout << "Time elapsed: " << diff/CLOCKS_PER_SEC/60 << " minutes." << endl;
 
 	// ROOT objects saving
-  //double _xleft = -0.87;
-  //double _ytop = (1+0.135)*h_frs->GetMaximum();
+	//double _xleft = -0.87;
+	//double _ytop = (1+0.135)*h_frs->GetMaximum();
 	//_g.DrawLatex(_xleft,_ytop, _sh.c_str());
 	h_frs->Print();
 	h_freq->Write();
@@ -205,13 +243,13 @@ int main() {
 	c.SaveAs("plot/FastRotation.eps");
 	c.SaveAs("plot/FastRotation.png");
 
-  h_freq->Draw();
-  c.SaveAs("plot/FreqDist.eps");
-  c.SaveAs("plot/FreqDist.png");
+	h_freq->Draw();
+	c.SaveAs("plot/FreqDist.eps");
+	c.SaveAs("plot/FreqDist.png");
 
-  h_p->Draw();
-  c.SaveAs("plot/MomentumDist.eps");
-  c.SaveAs("plot/MomentumDist.png");
+	h_p->Draw();
+	c.SaveAs("plot/MomentumDist.eps");
+	c.SaveAs("plot/MomentumDist.png");
 
 	tr->Write();
 	rootFile->Close();
@@ -226,13 +264,13 @@ int main() {
 
 Double_t ComputeTravelTimeMuon(double gamma, int n, double p_ptcl, double tzero) {
 
-  return (1 + n) * (2 * PI * gamma * M_mu / (c_light * c_light * 1E-9 * B)) - tzero;
+	return (1 + n) * (2 * PI * gamma * M_mu / (c_light * c_light * 1E-9 * B)) - tzero;
 
 }
 
 Double_t ComputeTravelTimeProton(double gamma, int n, double p_ptcl, double tzero) {
 
-  return (1 + n) * (2 * PI * gamma * M_p / (c_light * c_light * 1E-9 * B)) - tzero;
+	return (1 + n) * (2 * PI * gamma * M_p / (c_light * c_light * 1E-9 * B)) - tzero;
 
 }
 
@@ -240,18 +278,18 @@ Double_t ComputeTravelTimeProton(double gamma, int n, double p_ptcl, double tzer
 
 void DrawATLASLabel(TCanvas* _c) {
 
-  string _level="Internal Simulation";
-  string _ATLAS_desc="#font[72]{g-2}";
+	string _level="Internal Simulation";
+	string _ATLAS_desc="#font[72]{g-2}";
 
 	TLatex* _g;
 	double _xleft = 0.1;
 	double _ytop = 1.0;
 
-  _c->cd();
-  //draw horizontal label  
-    string _sh="";
-  _sh+=_ATLAS_desc+" "+_level;
-  _g->DrawLatex(_xleft,_ytop, "");
-  //_g->DrawLatex(_xleft,_ytop-_g->GetTextSize()*1.15, _sh.c_str());
+	_c->cd();
+	//draw horizontal label  
+	string _sh="";
+	_sh+=_ATLAS_desc+" "+_level;
+	_g->DrawLatex(_xleft,_ytop, "");
+	//_g->DrawLatex(_xleft,_ytop-_g->GetTextSize()*1.15, _sh.c_str());
 
 }
