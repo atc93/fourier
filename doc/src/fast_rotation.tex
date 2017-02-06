@@ -17,11 +17,6 @@ From an initial beam with a limited longitudinal extension we end up with a beam
 
 \subsection{Analytical description}
 
-FILL FIGURE FOR\newline
-  * no  E spread, T spread\newline
-  * add E spread\newline
-  * add T spread\newline
-
 Imagine that the initial muon distribution has zero emittance (no transverse size), zero momentum spread and zero bunch length (no longitudinal extension). 
 The particles share a common revolution period $T$ and the time dependence of the intensity signal at a fixed point (signal measured with a fiber harp for example), is 
 
@@ -37,7 +32,7 @@ The beam remains unchanged as a function of time given its perfectness.
 \centering
 \subfigure[]{\includegraphics[width=0.45\textwidth]{fig/FRS_noSpread_0-20_us.eps}}
 \subfigure[]{\includegraphics[width=0.45\textwidth]{fig/FRS_noSpread_0-1_us.eps}}
-\caption{Fast rotation signal as a function of time for a muon beam with zero emittance, zero momentum spread and zero bunch length.}
+\caption{Fast rotation signal as a function of time for a muon beam with zero emittance, zero momentum spread and zero bunch length for two time windows: (a) 0-20 $\mu$s, (b) 0-1 $\mu$s.}
 \label{fig:perfect_frs}
 \end{figure}
  
@@ -63,24 +58,26 @@ S(t) &=& \sum^{\infty}_{n=0}\int\frac{e^{-\Delta^2/(2\Delta^2_0)}}{\sqrt{2\pi}\D
 Note that there is no muon decay in Eq.~(\ref{eq:Espread_frs}) or the accompanying plots.
 Figure~\ref{fig:Espread_frs} shows the fast rotation signal for a beam with zero emittance, zero bunch length but with a 0.112\% momentum spread. 
 One can see that the beam decoheres. The decoherence envelope is set by the momentum spread, the more spread the faster the decoherence.
+The intensity asymptotically approaches that of the average stored current $<I> = eN\mu/T$.
 
 \begin{figure}[bt]
 \centering
 \subfigure[]{\includegraphics[width=0.6\textwidth]{fig/FRS_pSpread112_0-20us.eps}}\\
 \subfigure[]{\includegraphics[width=0.45\textwidth]{fig/FRS_pSpread112_0-5us.eps}}
 \subfigure[]{\includegraphics[width=0.45\textwidth]{fig/FRS_pSpread112_15-20us.eps}}
-\caption{Fast rotation signal as a function of time for a muon beam with zero emittance, zero bunch length but width a 0.112\% momentum spread.}
+\caption{Fast rotation signal as a function of time for a muon beam with zero emittance, zero bunch length but width a 0.112\% momentum spread for three time windows: (a) 0-20 $\mu$s, (b) 0-5 $\mu$s, (c) 15-20 $\mu$s.}
 \label{fig:Espread_frs}
 \end{figure}
 
-A realistic beam has on top of the momentum spread a non-zero bunch length. 
+A realistic beam has, on top of the momentum spread, a non-zero bunch length. 
 In this case Eq.~(\ref{eq:Espread_frs}) is re-expressed introducing a temporal offset $t^\prime$ as
 
 \begin{eqnarray}
-S(t,t^{\prime})&=& \sum_{n=0}^\infty\frac{e^{-(\frac{t-t^\prime}{nT}-1)^2/(2\Delta_0^2)}}{\sqrt{2\pi}\Delta_0 nT}
+S(t,t^{\prime})&=& \sum_{n=0}^\infty\frac{e^{-(\frac{t-t^\prime}{nT}-1)^2/(2\Delta_0^2)}}{\sqrt{2\pi}\Delta_0 nT}.
 \end{eqnarray}
 
-Suppose the intial temporal (longitudinal) distribution of the muons is Gaussian $$\xi(t^\prime) = \frac{1}{\sqrt{2\pi}\sigma_t}e^{-{t^\prime}^2/(2\sigma_t^2)}$$
+Suppose the intial temporal (longitudinal) distribution of the muons is Gaussian 
+$$\xi(t^\prime) = \frac{1}{\sqrt{2\pi}\sigma_t}e^{-{t^\prime}^2/(2\sigma_t^2)}$$.
 Then
 {\small
 \begin{eqnarray*}
@@ -96,7 +93,7 @@ S(t)&=& \sum_{n=0}^\infty\int_{-\infty}^\infty dt^\prime \frac{e^{-(\frac{t-t^\p
 &=&\sum_{n=0}^\infty\frac{1}{2\pi\Delta_0nT\sigma_t}e^{-(\frac{t}{nT}-1)^2/2\Delta_0^2}
 \int_{-\infty}^\infty dt^\prime \exp\left(-\alpha {t^\prime}^2+\beta t^\prime\right)\\
 &=&\sum_{n=0}^\infty\frac{1}{2\pi\Delta_0nT\sigma_t}e^{-(\frac{t}{nT}-1)^2/(2\Delta_0^2)}
-\sqrt{\frac{\pi}{\alpha}}e^{\beta^2/4\alpha}
+\sqrt{\frac{\pi}{\alpha}}e^{\beta^2/4\alpha},
 \end{eqnarray*}
 }
 where $\alpha = \frac{1}{2(nT)^2\Delta_0^2}+\frac{1}{2\sigma_t^2}$ and $\beta= (\frac{t}{nT}-1)/(nT\Delta_0^2)$.
@@ -111,7 +108,7 @@ S(t)&=&\sum_{n=0}^\infty\frac{1}{2\pi\Delta_0nT\sigma_t}e^{-(\frac{t}{nT}-1)^2/(
 \exp(\frac{(\frac{t}{nT}-1)^2}{\Delta_0^2}\frac{\sigma_t^2}{2(nT)^2\Delta_0^2+2\sigma_t^2})\nonumber\\
 &=& \frac{1}{\sqrt{2\pi}}\sum_{n=0}^\infty
 \frac{1}{\sqrt{((nT)^2\Delta_0^2+\sigma_t^2}}
-\exp(\frac{-(\frac{t}{nT}-1)^2}{2\Delta_0^2}\left(1-\frac{\sigma_t^2}{(nT)^2\Delta_0^2+\sigma_t^2}\right))\label{eq:frs-sigt}
+\exp(\frac{-(\frac{t}{nT}-1)^2}{2\Delta_0^2}\left(1-\frac{\sigma_t^2}{(nT)^2\Delta_0^2+\sigma_t^2}\right).\label{eq:frs-sigt}
 \end{eqnarray}
 }
 
@@ -125,6 +122,6 @@ created by a beam with an momentum spread having undergone an arbitrary number o
 \subfigure[]{\includegraphics[width=0.6\textwidth]{fig/FRS_pSpread112_tSpread25ns_0-20us.eps}}\\
 \subfigure[]{\includegraphics[width=0.45\textwidth]{fig/FRS_pSpread112_tSpread25ns_0-5us.eps}}
 \subfigure[]{\includegraphics[width=0.45\textwidth]{fig/FRS_pSpread112_tSpread25ns_15-20us.eps}}
-\caption{Fast rotation signal as a function of time for a muon beam with zero emittance, bunch length of 20 ns and momentum spread of 0.112\%.}
+\caption{Fast rotation signal as a function of time for a muon beam with zero emittance, bunch length of 20 ns and momentum spread of 0.112\% for three time windows: (a) 0-20 $\mu$s, (b) 0-5 $\mu$s, (c) 15-20 $\mu$s.}
 \label{fig:E_T_spread_frs}
 \end{figure}
