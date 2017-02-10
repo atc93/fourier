@@ -17,7 +17,7 @@ If $f$ is even, then Fourier's integral simplifies to \[f(x)=\frac{2}{\pi}\int^{
 The convolution of two functions $f$ and $g$ is defined to be \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau\] The convolution theorem states that \[\widehat{f\ast g}=\hat{f}\hat{g} \text{ and } \widetilde{f\ast g}=\tilde{f}\tilde{g}\] 
 \end{theorem}
 
-Suppose the supports of $f$ and $g$ are $(t_1,t_2)$ and $(t_3,t_4)$, respectively. Then \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau=\int^{t_2}_{t_1}f(\tau)g(t-\tau)d\tau\] As $\tau$ increases from $t_1$ to $t_2$, the argument of $g(t-\tau)$ decreases from $t-t_1$ to $t-t_2$. Therefore the integrand vanishes if $t$ is such that $t-t_1<t_3$ or $t-t_2>t_4$. Hence the support of $(f\ast g)(t)$ is $(t_1+t_3,t_2+t_4)$.
+%Suppose the supports of $f$ and $g$ are $(t_1,t_2)$ and $(t_3,t_4)$, respectively. Then \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau=\int^{t_2}_{t_1}f(\tau)g(t-\tau)d\tau\] As $\tau$ increases from $t_1$ to $t_2$, the argument of $g(t-\tau)$ decreases from $t-t_1$ to $t-t_2$. Therefore the integrand vanishes if $t$ is such that $t-t_1<t_3$ or $t-t_2>t_4$. Hence the support of $(f\ast g)(t)$ is $(t_1+t_3,t_2+t_4)$.%
 
 \subsection{The case of initially zero bunch length}
 
@@ -46,7 +46,23 @@ S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}(\omega)\cos\omega(t-t_0)d\omega=
 \end{equation}
 
 \subsection{Bunch Length Distribution $\xi(t')$}
-Consider the fast rotation signal of the previous subsection above; call it $S_0(t)$ for now. We have that given an initial symmetric longitudinal distribution $\xi(t')$, \[S(t)=\int\xi(t')S_0(t-t')dt'=(\xi\ast S_0)(t)\] If the support of $\xi$ is $(t_1,t_2)$, then the support of $S(t)$ is $(t_0+t_1,\infty)$ (the support of $S_0(t)$ is $(t_0,\infty)$). So then we may just apply the reasoning from the previous section to see that \[\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0+t_1}S(t)\cos\omega(t-t_0-t_1)dt\] and \[S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{0}\hat{S}(\omega)\cos\omega(t-t_0-t_1)d\omega\] This is a valid formula if $t_0+t_1\geq0$. In the case that $t_1+t_0\leq0$ or $t_1=-\infty$ there will be a problem, as the muons are injected at $t=0$. But assuming $\xi(t')$ is sufficiently narrow, starting at $t=0$ will not miss much of the signal, making the deformation to the spectrum negligible. Hence in this case we have that \[\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0S(t)\cos\omega tdt\] and \[S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{0}\hat{S}(\omega)\cos\omega td\omega\] We note however that we now have \[S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{(n+\theta/2\pi)T}-1\right)}{(n+\theta/2\pi)T}\]%Using $(4)$, we have \[S(t)=\frac{2}{\pi}\int\xi(t')dt'\int^{\infty}_0\cos\omega(t-t'-t_0)d\omega\int^{\infty}_{t_0}S_0(\tilde{t})\cos\omega(\tilde{t}-t_0)d\tilde{t}=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t'-t_0)d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)(\cos\omega(t-t_0)\cos\omega t'+\sin\omega(t-t_0)\sin\omega t')d\omega=\]\[\sqrt{\frac{2}{\pi}}\int\xi(t')dt'\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t_0)\cos\omega t'd\omega=\]\[\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega\] where we used parity of sine and $\langle\cos\omega t'\rangle=\int\xi(t')\cos\omega t'dt'$. So we have that% 
+We call the fast rotation signal with no inital bunch length $S_0(t)$. Given an initial longitudinal distribution $\xi(t')$, the fast rotation signal is described by \[S(t)=\int\xi(t')S_0(t-t')dt'=(\xi\ast S_0)(t)\] In the ideal case we would directly apply the convolution theorem to find that 
+
+\begin{equation}
+\hat{S}(\omega)=\hat{\xi}(\omega)\hat{S}_0(\omega)
+\label{eq:ConvoSpectrum}
+\end{equation} However, we won't have $S_0(t)$ to work with directly, nor $\xi(t)$. We need to use $S(t)$ to get $\hat{S}(\omega)$. 
+
+We express $S_0(t-t')$ through Fourier's integral: \[S_0(t-t')=\frac{2}{\pi}\int^{\infty}_0\cos\omega(t-t_0-t')d\omega\int^{\infty}_{t_0}S_0(\bar{t})\cos\omega(\bar{t}-t_0)d\bar{t}=\]\[\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\cos\omega(t-t_0-t')d\omega\] Substituting this expression into the convolution integral, we get \[S(t)=(\xi\ast S_0)(t)=\int^{\infty}_{-\infty}\xi(t)S_0(t-t')dt'=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)d\omega\int^{\infty}_{-\infty}\xi(t')\cos\omega(t-t_0-t')dt'=\]\[\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega(t-t_0-t')\rangle d\omega=\]\[\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega(t-t_0)\cos\omega t'+\sin\omega(t-t_0)\sin\omega t'\rangle d\omega=\]\[\sqrt{\frac{2}{\pi}}\left(\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega+\int^{\infty}_0\hat{S}_0(\omega)\langle\sin\omega t'\rangle\sin\omega(t-t_0)d\omega\right)\] where $\langle\text{ }\rangle$ denotes averaging with respect to $\xi(t)$. 
+
+If $\xi(t')$ is even, $\langle\sin\omega t'\rangle=0$. We are then left with 
+
+\begin{equation}
+S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega
+\label{eq:EvenBunchFT}
+\end{equation} suggesting that $\hat{S}(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. We can see that this is true by looking back at$~\eqref{eq:ConvoSpectrum}$: \[\hat{\xi}(\omega)=\int^{\infty}_{-\infty}\xi(t')e^{i\omega t'}dt'=\int^{\infty}_{-\infty}\xi(t')\cos\omega t'dt'=\langle\cos\omega t'\rangle\] and therefore $\hat{S}(\omega)=\hat{\xi}(\omega)\hat{S}_0(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. Thus $~\eqref{eq:EvenBunchFT}$ is the inverse Fourier transform, implying that \[\hat{S}(\omega)=\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt\] 
+
+If $\xi(t')$ is not symmetric, then we are faced with the problem that $\hat{S}(\omega)$ features an imaginary component.
 
 \subsection{Corrections to the Fourier Transform}
 
