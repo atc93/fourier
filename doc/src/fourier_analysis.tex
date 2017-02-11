@@ -14,7 +14,7 @@ For any piecewise continuous, piecewise differentiable, and absolutely integrabl
 If $f$ is even, then Fourier's integral simplifies to \[f(x)=\frac{2}{\pi}\int^{\infty}_0\cos\omega xd\omega\int^{\infty}_0f(t)\cos\omega tdt\]Suppose $f$ is a piecewise continuous, piecewise differentiable, and absolutely integrable function on $[0,\infty)$. If we extend $f$ to an even function defined on the whole real line, then the formula above is valid for the extension. In particular, it is also valid for $x\geq 0$.
 
 \begin{theorem}[Convolution Theorem]
-The convolution of two functions $f$ and $g$ is defined to be \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau\] The convolution theorem states that \[\widehat{f\ast g}=\hat{f}\hat{g} \text{ and } \widetilde{f\ast g}=\tilde{f}\tilde{g}\] 
+The convolution of two functions $f$ and $g$ is defined to be \[(f\ast g)(t)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau\] The convolution theorem states that \[\widehat{f\ast g}=\hat{f}\hat{g} \text{ and } \widetilde{f\ast g}=\tilde{f}\tilde{g}\] 
 \end{theorem}
 
 %Suppose the supports of $f$ and $g$ are $(t_1,t_2)$ and $(t_3,t_4)$, respectively. Then \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau=\int^{t_2}_{t_1}f(\tau)g(t-\tau)d\tau\] As $\tau$ increases from $t_1$ to $t_2$, the argument of $g(t-\tau)$ decreases from $t-t_1$ to $t-t_2$. Therefore the integrand vanishes if $t$ is such that $t-t_1<t_3$ or $t-t_2>t_4$. Hence the support of $(f\ast g)(t)$ is $(t_1+t_3,t_2+t_4)$.%
@@ -46,10 +46,10 @@ S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}(\omega)\cos\omega(t-t_0)d\omega=
 \end{equation}
 
 \subsection{Bunch Length Distribution $\xi(t')$}
-We call the fast rotation signal with no inital bunch length $S_0(t)$. Given an initial longitudinal distribution $\xi(t')$, the fast rotation signal is described by \[S(t)=\int\xi(t')S_0(t-t')dt'=(\xi\ast S_0)(t)\] In the ideal case we would directly apply the convolution theorem to find that 
+We call the fast rotation signal with no inital bunch length $S_0(t)$. Given an initial longitudinal distribution $\xi(t')$, the fast rotation signal is described by \[S(t)=\int\xi(t')S_0(t-t')dt'=\sqrt{2\pi}(\xi\ast S_0)(t)\] In the ideal case we would directly apply the convolution theorem to find that 
 
 \begin{equation}
-\hat{S}(\omega)=\hat{\xi}(\omega)\hat{S}_0(\omega)
+\hat{S}(\omega)=\sqrt{2\pi}\hat{\xi}(\omega)\hat{S}_0(\omega)
 \label{eq:ConvoSpectrum}
 \end{equation} However, we won't have $S_0(t)$ to work with directly, nor $\xi(t)$. We need to use $S(t)$ to get $\hat{S}(\omega)$. 
 
@@ -60,7 +60,7 @@ If $\xi(t')$ is even, $\langle\sin\omega t'\rangle=0$. We are then left with
 \begin{equation}
 S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega
 \label{eq:EvenBunchFT}
-\end{equation} suggesting that $\hat{S}(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. We can see that this is true by looking back at$~\eqref{eq:ConvoSpectrum}$: \[\hat{\xi}(\omega)=\int^{\infty}_{-\infty}\xi(t')e^{i\omega t'}dt'=\int^{\infty}_{-\infty}\xi(t')\cos\omega t'dt'=\langle\cos\omega t'\rangle\] and therefore $\hat{S}(\omega)=\hat{\xi}(\omega)\hat{S}_0(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. Thus $~\eqref{eq:EvenBunchFT}$ is the inverse Fourier transform, implying that \[\hat{S}(\omega)=\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt\] 
+\end{equation} suggesting that $\hat{S}(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. We can see that this is true by looking back at$~\eqref{eq:ConvoSpectrum}$: \[\hat{\xi}(\omega)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\xi(t')e^{i\omega t'}dt'=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\xi(t')\cos\omega t'dt'=\frac{\langle\cos\omega t'\rangle}{\sqrt{2\pi}}\] and therefore $\hat{S}(\omega)=\sqrt{2\pi}\hat{\xi}(\omega)\hat{S}_0(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. Thus $~\eqref{eq:EvenBunchFT}$ is the inverse Fourier transform, implying that \[\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt\] 
 
 If $\xi(t')$ is not symmetric, then we are faced with the problem that $\hat{S}(\omega)$ features an imaginary component.
 
