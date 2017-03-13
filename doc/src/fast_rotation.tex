@@ -108,10 +108,16 @@ S(t)&=&\sum_{n=0}^\infty\frac{1}{2\pi\Delta_0nT\sigma_t}e^{-(\frac{t}{nT}-1)^2/(
 \exp(\frac{(\frac{t}{nT}-1)^2}{\Delta_0^2}\frac{\sigma_t^2}{2(nT)^2\Delta_0^2+2\sigma_t^2})\nonumber\\
 &=& \frac{1}{\sqrt{2\pi}}\sum_{n=0}^\infty
 \frac{1}{\sqrt{((nT)^2\Delta_0^2+\sigma_t^2}}
-\exp(\frac{-(\frac{t}{nT}-1)^2}{2\Delta_0^2}\left(1-\frac{\sigma_t^2}{(nT)^2\Delta_0^2+\sigma_t^2}\right).\label{eq:frs-sigt}
+\exp\left(\frac{-(\frac{t}{nT}-1)^2}{2\Delta_0^2}\right)\left(1-\frac{\sigma_t^2}{(nT)^2\Delta_0^2+\sigma_t^2}\right).\label{eq:frs-sigt}
 \end{eqnarray}
 }
 
+It will turn out to be convenient to rewrite equation$~\eqref{eq:frs-sigt}$ as 
+\begin{equation}
+S(t)=\sum^{\infty}_{n=0}\frac{e^{-(t-nT)^2/2\Delta'^2_0n^2T^2^2}}{\sqrt{n^2T^2\Delta'^2_0}}
+\label{eq:frs-sigtsimp}
+\end{equation}
+where \[\Delta'^2_0=\frac{n^2T^2\Delta^2_0+\sigma^2_t}{n^2T^2}\]
 
 Figure~\ref{fig:E_T_spread_frs} shows the fast rotation signal for a beam with zero emittance, non-zero bunch length and non-zero momentum spread.
 One can see that the beam decoheres faster having a longitudinal extension. It is expected since the longitudinal extension can be seen as 
