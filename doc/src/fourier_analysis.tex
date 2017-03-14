@@ -120,10 +120,35 @@ for $\text{Re}(\beta)>0$ and $u\geq0$. Thus the result of using this integral in
 -\sqrt{\frac{2}{\pi}}\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta^2_0/2}e^{-i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}+\frac{i\omega (nT+t_0)\Delta_0}{\sqrt{2}}+\frac{t_s}{\Delta_0(nT+t_0)\sqrt{2}}\right]\right)
 \end{gather}
 
-\begin{figure}[bt]
+\begin{figure}[ht]
 \centering
 \includegraphics[scale=0.6]{fig/FT_no_tspread.eps}
 \caption{Frequency spectra for the case of a Gaussian energy offset distribution and no initial bunch length. Spectra for different $t_s$ are displayed, as well the corresponding $\Delta(f)$ functions}
 \end{figure}
 
+Figure~\ref{fig:FT_no_tspread} shows how the Fourier transform and the corresponding corrections are altered by increasing $t_s$.
+
 \section{Analysis for a Gaussian Energy Offset Distribution and Gaussian Longitudinal Distribution}
+
+The fast rotation signal in this case is of the same form as in the case of no longitudinal distribution: \[S(t)=\sum^{\infty}_{n=0}\frac{e^{-(t-(nT+t_0))^2/2\Delta'^2_0(nT+t_0)^2}}{\sqrt{2\pi}\Delta'_0(nT+t_0)}\] Thus $\hat{S}(\omega)=$ 
+
+\begin{gather}
+\sqrt{\frac{2}{\pi}}\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta'^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta'_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta'_0}{\sqrt{2}}+\frac{t_s}{\Delta'_0(nT+t_0)\sqrt{2}}\right]\right)+ \nonumber \\
+\sqrt{\frac{2}{\pi}}\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta'^2_0/2}e^{-i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta'_0\sqrt{2}}+\frac{i\omega (nT+t_0)\Delta'_0}{\sqrt{2}}+\frac{t_s}{\Delta'_0(nT+t_0)\sqrt{2}}\right]\right)
+\end{gather}
+and $\Delta(\omega)=$
+\begin{gather}
+\sqrt{\frac{2}{\pi}}\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta'^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta'_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta'_0}{\sqrt{2}}+\frac{t_0}{\Delta'_0(nT+t_0)\sqrt{2}}\right]\right)+ \nonumber \\
+\sqrt{\frac{2}{\pi}}\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta'^2_0/2}e^{-i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}+\frac{i\omega (nT+t_0)\Delta'_0}{\sqrt{2}}+\frac{t_0}{\Delta'_0(nT+t_0)\sqrt{2}}\right]\right) \nonumber \\
+-\sqrt{\frac{2}{\pi}}\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta'^2_0/2}e^{i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}-\frac{i\omega (nT+t_0)\Delta'_0}{\sqrt{2}}+\frac{t_s}{\Delta'_0(nT+t_0)\sqrt{2}}\right]\right)+ \nonumber \\
+-\sqrt{\frac{2}{\pi}}\sum^{\infty}_{n=0}\frac{e^{-\omega^2(nT+t_0)^2\Delta'^2_0/2}e^{-i\omega nT}}{4}\left(1-\frac{\sqrt{\pi}}{2}\text{Erf}\left[\frac{-1}{\Delta_0\sqrt{2}}+\frac{i\omega (nT+t_0)\Delta'_0}{\sqrt{2}}+\frac{t_s}{\Delta'_0(nT+t_0)\sqrt{2}}\right]\right)
+\end{gather}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=1.0]{fig/FT_tspread.eps}
+\caption{Frequency spectra for the case of a Gaussian energy offset distribution and Gaussian bunch length distribution. Spectra for different $t_s$ are displayed, as well the corresponding $\Delta(f)$ functions}
+\label{fig:FT_tspread}
+\end{figure}
+
+Figure~\ref{fig:FT_tspread} shows how the Fourier transform and the corresponding corrections are altered by increasing $t_s$.
