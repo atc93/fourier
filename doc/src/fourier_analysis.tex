@@ -60,7 +60,12 @@ If $\xi(t')$ is even, $\langle\sin\omega t'\rangle=0$. We are then left with
 \begin{equation}
 S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\rangle\cos\omega(t-t_0)d\omega
 \label{eq:EvenBunchFT}
-\end{equation} suggesting that $\hat{S}(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. We can see that this is true by looking back at$~\eqref{eq:ConvoSpectrum}$: \[\hat{\xi}(\omega)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\xi(t')e^{i\omega t'}dt'=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\xi(t')\cos\omega t'dt'=\frac{\langle\cos\omega t'\rangle}{\sqrt{2\pi}}\] and therefore $\hat{S}(\omega)=\sqrt{2\pi}\hat{\xi}(\omega)\hat{S}_0(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. Thus $~\eqref{eq:EvenBunchFT}$ is the inverse Fourier transform, implying that \[\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt\] 
+\end{equation} suggesting that $\hat{S}(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. We can see that this is true by looking back at$~\eqref{eq:ConvoSpectrum}$: \[\hat{\xi}(\omega)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\xi(t')e^{i\omega t'}dt'=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}\xi(t')\cos\omega t'dt'=\frac{\langle\cos\omega t'\rangle}{\sqrt{2\pi}}\] and therefore $\hat{S}(\omega)=\sqrt{2\pi}\hat{\xi}(\omega)\hat{S}_0(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle$. Thus$~\eqref{eq:EvenBunchFT}$ is the inverse Fourier transform, implying that 
+
+\begin{equation}
+\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt
+\label{eq:integEvenBunchFT}
+\end{equation}
 
 If $\xi(t')$ is not symmetric, then we are faced with the problem that $\hat{S}(\omega)$ features an imaginary component.
 
