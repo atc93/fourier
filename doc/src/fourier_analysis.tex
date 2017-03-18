@@ -83,10 +83,10 @@ If the detector detects the muons at a time $t_s>t_0$, then the resulting Fourie
 \end{equation}
 However, we do not observe $S(t)$ on $(t_0,t_s)$, so we need to find a way to correct the frequency spectrum. 
 
-In order to do this, we first note that the Fourier transform has associated with it an uncertainty principle, namely that $\Delta f\Delta t\sim1$. If $t_s$ isn't too great, we can then expect that the spread of $\Delta(\omega)$ about the magic frequency will be large while the spread of $\hat{S}(\omega)$ will change negligibly. So we may express $S(t)$ using the observed $\hat{S}(\omega)$ through formula$~\eqref{eq:nospreadIFT}$. Thus we have that \[\Delta(\omega)=\frac{2}{\pi}\int^{t_s}_{t_0}\int^{\infty}_0\hat{S}(\omega')\cos\omega'(t-t_0)\cos\omega(t-t_0)d\omega' dt\] Integrating with respect to $t$ first, we get \[\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega)\left(\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}+\frac{\sin(\omega+\omega')(t_s-t_0)}{\omega+\omega'}\right)d\omega'\] We may neglect the second term in the parentheses, as we are interested in frequencies $\omega$ such that $|\omega-\omega'|<<\omega+\omega'$, so 
+In order to do this, we first note that the Fourier transform has associated with it an uncertainty principle, namely that $\Delta f\Delta t\sim1$. If $t_s$ isn't too great, we can then expect that the spread of $\Delta(\omega)$ about the magic frequency will be large while the spread of $\hat{S}(\omega)$ will change negligibly. So we may express $S(t)$ using the observed $\hat{S}(\omega)$ through formula$~\eqref{eq:nospreadIFT}$. Thus we have that \[\Delta(\omega)=\frac{2}{\pi}\int^{t_s}_{t_0}\int^{\infty}_0\hat{S}(\omega')\cos\omega'(t-t_0)\cos\omega(t-t_0)d\omega' dt\] Integrating with respect to $t$ first, we get \[\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega')\left(\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}+\frac{\sin(\omega+\omega')(t_s-t_0)}{\omega+\omega'}\right)d\omega'\] We may neglect the second term in the parentheses, as we are interested in frequencies $\omega$ such that $|\omega-\omega'|<<\omega+\omega'$, so 
 
 \begin{equation}
-\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega)\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}d\omega'
+\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega')\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}d\omega'
 \label{eq:approxDelta}
 \end{equation}
 
