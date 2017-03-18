@@ -30,14 +30,15 @@
 #include <sstream>
 
 // simulation paramaters
-const double N_muon = 10000000; 	// number of muons to simulate
-const double N_turn = 10;			// how many cyclotron revolution to simulate
+const double N_muon = 1000000; 	// number of muons to simulate
+const double N_turn = 3000;			// how many cyclotron revolution to simulate
 const double p_spread = 0.112;	// muon momentum distribution spread in %
-const double t_spread = 0.;//25;			// muon beam length spread in nano second
+const double t_spread = 25;//25;			// muon beam length spread in nano second
 const bool   fillTree = false;  // fill root tree with time, momentum...
-const bool   useMuon = false;		// simulate muons
+const bool   useMuon = true;		// simulate muons
 const bool   useProton = false;		// simulate protons
-const bool 	 useProtonMuon = true;
+const bool   useProtonMuon = false;
+const double detLocation=0.5; // half-way 
 
 // physical constants
 const double M_mu = 0.1056583715 ; 								// muon mass in gev
@@ -93,14 +94,14 @@ int main() {
 	tr->Branch("time",&time,"time/d");
 	tr->Branch("p_ptcl",&p_ptcl,"p_ptcl/d");
 
-	TH1D *h_frs = new TH1D("h_frs", "fast rotation", 200000, 0, 20);
+	TH1D *h_frs = new TH1D("h_frs", "fast rotation", 60000, 0, 300);
 	h_frs->GetXaxis()->SetTitle("time [#mus]");
 	h_frs->GetXaxis()->CenterTitle();
 	h_frs->GetXaxis()->SetTitleOffset(1.1);
-	h_frs->GetXaxis()->SetTitle("intensity");
-	h_frs->GetXaxis()->CenterTitle();
-	h_frs->GetXaxis()->SetTitleOffset(1.3);
-	gStyle->SetOptStat(0);
+	h_frs->GetYaxis()->SetTitle("intensity");
+	h_frs->GetYaxis()->CenterTitle();
+	h_frs->GetYaxis()->SetTitleOffset(1.5);
+	gStyle->SetOptStat(1100);
 	TCanvas c; c.cd();
 	string _level="internal simulation";
 	string _atlas_desc="#font[72]{g-2}";
@@ -235,7 +236,7 @@ int main() {
 	//double _xleft = -0.87;
 	//double _ytop = (1+0.135)*h_frs->GetMaximum();
 	//_g.DrawLatex(_xleft,_ytop, _sh.c_str());
-	h_frs->Print();
+	h_frs->Write();
 	h_freq->Write();
 	h_p->Write();
 
@@ -264,13 +265,13 @@ int main() {
 
 Double_t ComputeTravelTimeMuon(double gamma, int n, double p_ptcl, double tzero) {
 
-	return (1 + n) * (2 * PI * gamma * M_mu / (c_light * c_light * 1E-9 * B)) - tzero;
+	return (detLocation + n) * (2 * PI * gamma * M_mu / (c_light * c_light * 1E-9 * B)) - tzero;
 
 }
 
 Double_t ComputeTravelTimeProton(double gamma, int n, double p_ptcl, double tzero) {
 
-	return (1 + n) * (2 * PI * gamma * M_p / (c_light * c_light * 1E-9 * B)) - tzero;
+	return (detLocation + n) * (2 * PI * gamma * M_p / (c_light * c_light * 1E-9 * B)) - tzero;
 
 }
 
