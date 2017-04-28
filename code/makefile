@@ -14,7 +14,7 @@ LIBS     = -lboost_system -lMinuit -lpthread
 
 DBG    = -g -O3 -Wall 
 
-CC     = g++ $(DBG) $(LIB_PATH) $(LIBS) $(INC_PATH) -lpthread
+CC     = g++ $(DBG) $(LIB_PATH) $(LIBS) $(INC_PATH) -lpthread -std=c++11
 MIN_CC = g++ $(DBG) $(INC_PATH) $(CFLAGS) $(ROOT_FLAGS) -std=c++11
 
 BIN_DIR = bin
@@ -22,7 +22,13 @@ OBJ_DIR = obj
 SRC_DIR = src
 INC_DIR = inc
 
-all: FastRotationToyModel FFT 
+all: FastRotationToyModel FFT fillDigitizeFRS fillWshape 
+
+fillWshape:	$(SRC_DIR)/fillWshape.cpp
+	$(CC) -o $(BIN_DIR)/fillWshape $(SRC_DIR)/fillWshape.cpp $(RCXX)
+
+fillDigitizeFRS:	$(SRC_DIR)/fillDigitizeFRS.cpp
+	$(CC) -o $(BIN_DIR)/fillDigitizeFRS $(SRC_DIR)/fillDigitizeFRS.cpp $(RCXX)
 
 FastRotationToyModel: $(SRC_DIR)/FastRotationToyModel.cpp
 	$(CC) -o $(BIN_DIR)/FastRotationToyModel $(SRC_DIR)/FastRotationToyModel.cpp $(RCXX)

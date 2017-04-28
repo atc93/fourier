@@ -20,6 +20,7 @@
 #include "TClass.h"
 #include "TKey.h"
 #include "TFile.h"
+#include "TString.h"
 #include "TH1.h"
 #include "TSystem.h"
 #include "TMath.h"
@@ -56,4 +57,4 @@ using std::ostringstream;
 using std::map;
 using std::setprecision;
 using std::iostream;
-
+using std::fstream;

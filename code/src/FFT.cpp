@@ -126,8 +126,8 @@ int main(int argc, char* argv[]){
 	//int rebin;
 	//if (0==0) {rebin = nBinsX / size;}
 	//else {std::cout << "- ERROR - Cannot rebinning with an integer" << std::endl; return 0;}
-	//h1->Rebin(rebin);
-	Complex fft_input[size];
+	if (rebin) h1->Rebin(rebinWidth);
+	Complex *fft_input = new Complex[size];
 
 	// Fill an array with the histogram data
 	for (int i = 1; i<=size; ++i) {
@@ -135,9 +135,9 @@ int main(int argc, char* argv[]){
 	}
 
 	CArray data(fft_input, size);
-	double re[size];
-	double im[size];
-	double mag[size];
+	double *re = new double[size];
+	double *im = new double[size];
+	double *mag = new double[size];
 
 	//need to add empty data at the begining?
 	for (int i=0;i<tS;++i){
@@ -204,9 +204,9 @@ int main(int argc, char* argv[]){
 	gPad->SetTicks(1);
 	hfft->Draw();
 	hfftIm->SetLineColor(2);
-	hfftIm->Draw("same");
+	//hfftIm->Draw("same");
 	hfftMag->SetLineColor(1);
-	hfftMag->Draw("same");
+	//hfftMag->Draw("same");
 
 	if (muon) {
 	// Extract and rescale histo yMax and yMin
@@ -349,6 +349,8 @@ int main(int argc, char* argv[]){
 
 	FFT->Close();
 	f->Close();
+
+	delete fft_input, re, im, mag;
 
 	return 0;
 }
