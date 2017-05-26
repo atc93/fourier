@@ -17,8 +17,6 @@ If $f$ is even, then Fourier's integral simplifies to \[f(x)=\frac{2}{\pi}\int^{
 The convolution of two functions $f$ and $g$ is defined to be \[(f\ast g)(t)=\frac{1}{\sqrt{2\pi}}\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau\] The convolution theorem states that \[\widehat{f\ast g}=\hat{f}\hat{g} \text{ and } \widetilde{f\ast g}=\tilde{f}\tilde{g}\] 
 \end{theorem}
 
-%Suppose the supports of $f$ and $g$ are $(t_1,t_2)$ and $(t_3,t_4)$, respectively. Then \[(f\ast g)(t)=\int^{\infty}_{-\infty}f(\tau)g(t-\tau)d\tau=\int^{t_2}_{t_1}f(\tau)g(t-\tau)d\tau\] As $\tau$ increases from $t_1$ to $t_2$, the argument of $g(t-\tau)$ decreases from $t-t_1$ to $t-t_2$. Therefore the integrand vanishes if $t$ is such that $t-t_1<t_3$ or $t-t_2>t_4$. Hence the support of $(f\ast g)(t)$ is $(t_1+t_3,t_2+t_4)$.%
-
 \subsection{The case of initially zero bunch length}
 
 In this case we have that $\xi(t')=\delta(t')$, so the fast rotation signal becomes \[S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{(n+\theta/2\pi)T}-1\right)}{(n+\theta/2\pi)T}\]
@@ -69,26 +67,34 @@ S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\ra
 
 If $\xi(t')$ is not symmetric, then we are faced with the problem that $\hat{S}(\omega)$ features an imaginary component.
 
+\subsection{Introducing Vacuum Chamber Cutoffs to the Model}
+Currently the model does not feature cutoffs corresponding to the presence of the vacuum chamber boundaries in the ring, and so it propagates muons with forbidden revolution frequencies. This is easily remedied by altering $\rho(\Delta)$ to make it vanish outside the interval of $(-\Delta_c,\Delta_c)$, where in the g-2 experiment $\Delta_c=0.0025$. THe remainder of this note will assume the presence of vacuum chamber cutoffs unless otherwise noted.
+
 \subsection{Corrections to the Fourier Transform}
 
-If the detector detects the muons at a time $t_s>t_0$, then the resulting Fourier transform of the observed fast rotation signal has a missing component 
+If the detector detects the muons at a time $t_s>t_0$, we see a fast rotation signal $S_1(t)$ which vanishes on $(t_0,t_s)$ and equals the full fast rotation signal $S(t)$ on $(t_s,\infty)$. Taking the Fourier transform of $S_1(t)$, we get the frequency spectrum
+
+\begin{equation}
+\hat{S}_1(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_s}S_1(t)\cos\omega(t-t_0)dt
+\label{eq:firstapprox}
+\end{equation}
+
+This is not the complete frequency spectrum as we are missing the following component 
 \begin{equation}
 \Delta(\omega)=\sqrt{\frac{2}{\pi}}\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt
 \label{eq:Delta}
-\end{equation} while the immediately observed frequency spectrum is 
+\end{equation} The problem now is to somehow obtain $\Delta(\omega)$ using only $S_1(t)$ and $\hat{S}_1(\omega)$.
 
+We first obtain an expression for $\Delta(\omega)$ using $\hat{S}(\omega)$: \[\Delta(\omega)=\sqrt{\frac{2}{\pi}}\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt=\frac{2}{\pi}\int^{t_s}_{t_0}\int^{\infty}_0\hat{S}(\omega')\cos\omega'(t-t_0)\cos\omega(t-t_0)d\omega'dt\] where we used$~\eqref{eq:nospreadIFT}$. Switching the order of integration to integrate with respect to $t$ first, we get \[\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega')\left(\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}+\frac{\sin(\omega+\omega')(t_s-t_0)}{\omega+\omega'}\right)d\omega'\] Outside the vacuum chamber (given by the interval $(\omega^-_1,\omega^+_1)$) and the "harmonics" of the vacuum chamber ($(\omega^-_n,\omega^+_n)=(\omega^-_1+(n-1)\omega_0,n\omega^+_1+(n-1)\omega_0)$ where $\omega_0$ is the magic frequency), $\hat{S}(\omega)$ vanishes, so we may rewrite the above integral as \[\sum^{\infty}_{n=1}\frac{1}{\pi}\int^{\omega^+_n}_{\omega^-_n}\hat{S}(\omega')\left(\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}+\frac{\sin(\omega+\omega')(t_s-t_0)}{\omega+\omega'}\right)d\omega'\] As such, we may neglect the second term in the parentheses as it will be negligibly small: \[\Delta(\omega)=\sum^{\infty}_{n=1}\frac{1}{\pi}\int^{\omega^+_n}_{\omega^-_n}\hat{S}(\omega')\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}d\omega'\]
+
+To get the correction, we first note that the Fourier transform has associated with it an uncertainty principle, namely that $\Delta\omega\Delta t\sim2\pi$. If $t_s-t_0$ isn't too great, we can expect that the spread of $\hat{S}_1(\omega)$ about the magic frequency will change negligibly relative to that of $\hat{S}(\omega)$. This means that the frequency content of $\hat{S}_1(\omega)$ is approximately the same as that of $\hat{S}(\omega)$.
+
+With $t_s>t_0$, $\hat{S}_1(\omega)$ features frequencies outside the vacuum chamber boundaries due to aliasing effects. However, these are non-physical as no muons can actually be outside the chamber. Due to the uncertainty principle, the spread of $\hat{S}_1(\omega)$ about the magic frequency remains approximately the same as $\hat{S}(\omega)$. And since the only physical frequencies lie within $(\omega^-_n,\omega^+_n)$, we may approximate $\Delta(\omega)$ by writing 
 \begin{equation}
-\hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_s}S(t)\cos\omega(t-t_0)dt
-\label{eq:firstapprox}
+\Delta(\omega)=\sum^{\infty}_{n=1}\frac{1}{\pi}\int^{\omega^+_n}_{\omega^-_n}\hat{S}_1(\omega')\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}d\omega'
+\label{eq:OrlovDelta}
 \end{equation}
-However, we do not observe $S(t)$ on $(t_0,t_s)$, so we need to find a way to correct the frequency spectrum. 
 
-In order to do this, we first note that the Fourier transform has associated with it an uncertainty principle, namely that $\Delta f\Delta t\sim1$. If $t_s$ isn't too great, we can then expect that the spread of $\Delta(\omega)$ about the magic frequency will be large while the spread of $\hat{S}(\omega)$ will change negligibly. So we may express $S(t)$ using the observed $\hat{S}(\omega)$ through formula$~\eqref{eq:nospreadIFT}$. Thus we have that \[\Delta(\omega)=\frac{2}{\pi}\int^{t_s}_{t_0}\int^{\infty}_0\hat{S}(\omega')\cos\omega'(t-t_0)\cos\omega(t-t_0)d\omega' dt\] Integrating with respect to $t$ first, we get \[\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega')\left(\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}+\frac{\sin(\omega+\omega')(t_s-t_0)}{\omega+\omega'}\right)d\omega'\] We may neglect the second term in the parentheses, as we are interested in frequencies $\omega$ such that $|\omega-\omega'|<<\omega+\omega'$, so 
-
-\begin{equation}
-\Delta(\omega)=\frac{1}{\pi}\int^{\infty}_0\hat{S}(\omega')\frac{\sin(\omega-\omega')(t_s-t_0)}{\omega-\omega'}d\omega'
-\label{eq:approxDelta}
-\end{equation}
 
 \subsection{Physical Interpretation of the Fourier Transform of the Fast Rotation Signal}
 
