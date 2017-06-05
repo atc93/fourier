@@ -30,10 +30,10 @@
 #include <sstream>
 
 // simulation paramaters
-const double N_muon = 20000000;     // number of muons to simulate
-const double N_turn = 4700;			// how many cyclotron revolution to simulate
+const double N_muon = 100000;     // number of muons to simulate
+const double N_turn = 5;			// how many cyclotron revolution to simulate
 const double p_spread = 0.112;      // muon momentum distribution spread in %
-const double t_spread = 25;//25;	// muon beam length spread in nano second
+const double t_spread = 0.;//25;	// muon beam length spread in nano second
 const bool   fillTree = false;      // fill root tree with time, momentum...
 const bool   useMuon = true;		// simulate muons
 const bool   useProton = false;		// simulate protons
@@ -57,7 +57,7 @@ const double inch = 0.0254;
 const double PI = TMath::Pi();
 
 // debugging mode
-const int DEBUG=0;
+const int DEBUG=1;
 
 // Set momentum distribution
 const int Gaus		= 1;
@@ -123,7 +123,7 @@ int main() {
     tr->Branch("time",&time,"time/d");
     tr->Branch("p_ptcl",&p_ptcl,"p_ptcl/d");
 
-    TH1D *h_frs = new TH1D("h_frs", "fast rotation", 35000, 0, 700);
+    TH1D *h_frs = new TH1D("h_frs", "fast rotation", 300000, 0, 300);
     h_frs->GetXaxis()->SetTitle("time [#mus]");
     h_frs->GetXaxis()->CenterTitle();
     h_frs->GetXaxis()->SetTitleOffset(1.1);
@@ -275,7 +275,8 @@ int main() {
 
 Double_t ComputeTravelTimeMuon(double gamma, int n, double p_ptcl, double tzero) {
 
-    return (detLocation + n) * (2 * PI * gamma * M_mu / (c_light * c_light * 1E-9 * B)) - tzero;
+//    return (detLocation + n) * (2 * PI * gamma * M_mu / (c_light * c_light * 1E-9 * B)) - tzero; // using B-field
+      return (detLocation + n) * (2 * PI * R0/ ( p_ptcl / (gamma * M_mu )* c_light )) - tzero; // just d = velocity x time
 
 }
 
