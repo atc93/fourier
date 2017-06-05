@@ -1,4 +1,4 @@
-== . directory ==
+== . directory ===
 
 Contain the main.tex file
 To generate the PDF, run (need tex to be installed):
