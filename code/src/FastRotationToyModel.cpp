@@ -276,13 +276,13 @@ int main() {
 Double_t ComputeTravelTimeMuon(double gamma, int n, double p_ptcl, double tzero) {
 
 //    return (detLocation + n) * (2 * PI * gamma * M_mu / (c_light * c_light * 1E-9 * B)) - tzero; // using B-field
-      return (detLocation + n) * (2 * PI * R0/ ( p_ptcl / (gamma * M_mu )* c_light )) - tzero; // just d = velocity x time
+      return (detLocation + n) * (2 * PI * R0/ ( p_ptcl / (gamma * M_mu )* c_light )) + tzero; // just d = velocity x time
 
 }
 
 Double_t ComputeTravelTimeProton(double gamma, int n, double p_ptcl, double tzero) {
 
-    return (detLocation + n) * (2 * PI * gamma * M_p / (c_light * c_light * 1E-9 * B)) - tzero;
+    return (detLocation + n) * (2 * PI * gamma * M_p / (c_light * c_light * 1E-9 * B)) + tzero;
 
 }
 
