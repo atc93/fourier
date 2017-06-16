@@ -65,10 +65,20 @@ S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\ra
 \label{eq:integEvenBunchFT}
 \end{equation}
 
-If $\xi(t')$ is not symmetric, then we are faced with the problem that $\hat{S}(\omega)$ features an imaginary component.
+\subsection{Asymmetric Longitudinal Bunch Distribution}
+
+If $\xi(t')$ is not symmetric, then we are faced with the problem that $\hat{S}(\omega)$ features an imaginary component. Blindly applying the convolution theorem yields \[\hat{S}(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle+i\hat{S}_0(\omega)\langle\sin\omega t'\rangle\]
+
+Let's take a specific example of an asymmetric distribution to get a feel for what to do later. Suppose $\xi$ is even about some point $\mu\neq0$ (also the center of mass of the distribution), which is likely to happen in the g-2 experiment (accidental offset from the origin). Let $t_0$ be the time that the center of mass of the beam first arrives at a given detector if $\mu$ were to equal 0. Then the actual arrival time of the center of the bunch at the detector is $t'_0=t_0+\mu$. Furthermore, let's define $\xi'(t)=\xi(t+\mu)$. Then the physical situation described by $\xi'$ and $t'_0$ is the same as that described by $\xi$ and $t_0$. But if we use $\xi'$ and $t'_0$ for the Fourier analysis, we no longer have the imaginary term in $\hat{S}(\omega)$, since we're now dealing with a familiar situation: a symmetric longitudinal distribution. Therefore $\hat{S}(\omega)=\hat{S}'_0(\omega)\langle\cos\omega t'\rangle'$ where $\langle\text{ }\rangle'$ denotes averaging with respect to $\xi'(t)$, and $S'_0(t)$ is the fast rotation signal without initial longitudinal spread and with start time $t'_0$ 
+
+What happens with an asymmetric distribution $\xi(t)$ defined on the interval $[a,b]$? There is now no unique symmetry point which makes it obvious how to redefine $t_0$. But using the idea of the last paragraph, let $t'_0=t_0+x_0$ where $x_0$ is such that the for the function defined as \[f(x)=\int^{b-x}_{a-x}\xi(t+x)\sin\omega tdt\] $f(x_0)=0$. This effectively amounts to finding a new origin about which $\langle\sin\omega t'\rangle=0$. Since the frequency distribution that we deal with is very narrow, $(\omega-\omega_0)/\omega\sim10^{-3}$, we may approximate $f(x)$ by \[f(x)\approx\int^{b-x}_{a-x}\xi(t)\sin\omega_0 tdt\] Once we find $x_0$ and thus $t'_0$, then once again $\hat{S}(\omega)=\hat{S}'_0(\omega)\langle\cos\omega t'\rangle'$.
 
 \subsection{Introducing Vacuum Chamber Cutoffs to the Model}
 Currently the model does not feature cutoffs corresponding to the presence of the vacuum chamber boundaries in the ring, and so it propagates muons with forbidden revolution frequencies. This is easily remedied by altering $\rho(\Delta)$ to make it vanish outside the interval of $(-\Delta_c,\Delta_c)$, where in the g-2 experiment $\Delta_c=0.0025$. THe remainder of this note will assume the presence of vacuum chamber cutoffs unless otherwise noted.
+
+\subsection{Physical Interpretation of the Fourier Transform of the Fast Rotation Signal}
+
+Assuming that the energy offset distribution $\rho(\Delta)$ is centered with a maximum at $\Delta=0$, the harmonics of the Fourier transform of the fast rotation signal will be featured at integer multiples of the magic frequency; this is evident from the construction of the general fast rotation signal. The signal is due to the orbits of muons at various revolution frequencies, so $\hat{S}(\omega)$ describes the distribution of revolution frequencies among the muons. However, the muons are restricted to the vacuum chamber, making frequencies corresponding to muons outside the chamber nonphysical. Hence the first harmonic corresponds to the physical revolution frequency distribution of the muons.
 
 \subsection{Corrections to the Fourier Transform}
 
@@ -95,10 +105,9 @@ With $t_s>t_0$, $\hat{S}_1(\omega)$ features frequencies outside the vacuum cham
 \label{eq:OrlovDelta}
 \end{equation}
 
+\subsubsection{A Limiting Case: One Muon}
 
-\subsection{Physical Interpretation of the Fourier Transform of the Fast Rotation Signal}
-
-Assuming that the energy offset distribution $\rho(\Delta)$ is centered with a maximum at $\Delta=0$, the harmonics of the Fourier transform of the fast rotation signal will be featured at integer multiples of the magic frequency; this is evident from the construction of the general fast rotation signal. The signal is due to the orbits of muons at various revolution frequencies, so $\hat{S}(\omega)$ describes the distribution of revolution frequencies among the muons. However, the muons are restricted to the vacuum chamber, making frequencies corresponding to muons outside the chamber nonphysical. Hence the first harmonic corresponds to the physical revolution frequency distribution of the muons.
+Suppose we have a single muon in the ring. The fast rotation signal that describes the muon is \[S(t)=\sum^{\infty}_{n=0}\delta(t-nT-t_0)\] By time reversal symmetry, we may rewrite $S(t)$ as $\sum^{\infty}_{n=-\infty}\delta(t-nT-t_0)$, the Dirac comb. Then $\hat{S}(\omega)=\frac{\sqrt{2\pi}}{T}\delta(\omega-2\pi n/T)$. Now suppose we miss several turns of the signal. Thus \[\Delta(\omega)=\sqrt{\frac{2}{\pi}}\int^{t_s}_{t_0}S(t)\cos\omega(t-t_0)dt=\sqrt{\frac{2}{\pi}}\sum^N_{n=0}\cos\omega nT\] where $N=\lfloor\frac{t_s-t_0}{T}\rfloor$ so that $\hat{S}_1(\omega)=\sqrt{2/\pi}\sum^{\infty}_{n=N+1}\cos\omega nT$. See Figures INSERT and INSERT. With Figure INSERT we note that as the number of turns approaches infinity, the frequency spectrum becomes the Dirac comb; this is due to the fact \[\sum^{\infty}_{n=0}\cos nx=\pi\delta(x-2\pi n)+\frac{1}{2}\] see http://functions.wolfram.com/ElementaryFunctions/Cos/23/02/0013/. From the figures we see that in fact the approximation for $\Delta(\omega)$ works.
 
 \section{Analysis for a Gaussian Energy Offset Distribution and Initially Zero Bunch Length}
 
