@@ -60,14 +60,16 @@ const double PI = TMath::Pi();
 const int DEBUG=1;
 
 // Set momentum distribution
-const int Gaus		= 1;
+const int Gaus		= 0;
 const int Landau	= 0;
 const int Unif		= 0;
 const int Custom 	= 0;
+const int VacBounds = 1;
 
 // Set time distribution
 const int t_wShape 	= 0;
-const int t_Gaus 	= 1;
+const int t_Gaus 	= 0;
+const int t_Asymm   = 1;
 
 // namespaces
 using namespace std;
@@ -107,14 +109,20 @@ int main() {
     vector<double> v_t_spread;
     TF1 *f1 = new TF1("f1","((sin(50*(x))/(50*(x))+1)*exp(-0.5*((x)/0.3)**2))",-1,1);
     f1->SetNpx(10000);
+    TF1 *f2 = new TF1("f2","(exp(-0.5*((x)/(0.00112))**2))/(sqrt(2*3.1415926535)*0.00112)",-0.0025,0.0025);
+    f2->SetNpx(100000);
+    TF1 *f3 = new TF1("f3","(exp(-0.5*((x-20E-9)/(3E-9))**2))/(sqrt(2*3.1415926535)*3E-9)+(exp(-0.5*((x+30E-9)/(5E-9))**2))/(sqrt(2*3.1415926535)*5E-9)",-50E-9,50E-9);
+    f3->SetNpx(100000);
     for (int i=0; i<N_muon; ++i)    {
         if (Gaus)       v_p_spread.push_back(gRandom -> Gaus(0, p_spread/100));
         else if (Landau) v_p_spread.push_back(gRandom -> Landau(0, p_spread/250));
         else if (Unif)       v_p_spread.push_back(gRandom -> Uniform(-5*p_spread/100,5*p_spread/100));
         else if (Custom) v_p_spread.push_back((f1->GetRandom())/150);
-
+        else if (VacBounds) v_p_spread.push_back(f2->GetRandom());
+        
         if (t_Gaus) v_t_spread.push_back(gRandom -> Gaus(0, t_spread*1E-9));
         else if (t_wShape) v_t_spread.push_back(h_wShape->GetRandom()*1E-9);
+        else if (t_Asymm) v_t_spread.push_back(f3->GetRandom());
     }
 
     // root objects
@@ -275,8 +283,8 @@ int main() {
 
 Double_t ComputeTravelTimeMuon(double gamma, int n, double p_ptcl, double tzero) {
 
-//    return (detLocation + n) * (2 * PI * gamma * M_mu / (c_light * c_light * 1E-9 * B)) - tzero; // using B-field
-      return (detLocation + n) * (2 * PI * R0/ ( p_ptcl / (gamma * M_mu )* c_light )) + tzero; // just d = velocity x time
+    return (detLocation + n) * (2 * PI * gamma * M_mu / (c_light * c_light * 1E-9 * B)) + tzero; // using B-field
+//      return (detLocation + n) * (2 * PI * R0/ ( p_ptcl / (gamma * M_mu )* c_light )) + tzero; // just d = velocity x time
 
 }
 
