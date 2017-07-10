@@ -20,17 +20,17 @@ The convolution of two functions $f$ and $g$ is defined to be \[(f\ast g)(t)=\fr
 \subsection{The case of initially zero bunch length}
 
 In this case we have that $\xi(t')=\delta(t')$, so the fast rotation signal becomes \[S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{(n+\theta/2\pi)T}-1\right)}{(n+\theta/2\pi)T}\]
-Assuming the bunch evolves such that in the first turn the beam spreads negligibly, the center of mass of the bunch reaches the fiber harp at position $\theta$ at some time $t_0$. This $t_0$ is the time when muons at the magic frequency first reach the detector. Furthermore, we have that $\theta/2\pi=t_0/T$, so we may write 
+The beam first arrives at the detector with azimuthal position $\theta$ at time $t_0$. Given that the frequency distrbution which the muons orbit the ring with is narrow, $\omega-\omega_0/\omega\sim10^{-3}$, the bunch evolves such that in the first turn the beam spreads negligibly. Hence $t_0$ is the arrival time of the center of mass of the bunch at the detector. Therefore we have that $\theta/2\pi=t_0/T$, so $S(t)$ may be written 
 
 \[
 S(t)=\sum^{\infty}_{n=0}\frac{\rho\left(\frac{t}{nT+t_0}-1\right)}{nT+t_0}
 \]
-We next assume that $\mathcal{S}(t)\equiv S(t+t_0)$ is sufficiently well behaved so as to be absolutely integrable on $[0,\infty)$, as well as piecewise continuous and piecewise differentiable. Note that this means that $\rho(\Delta)$ must satisfy these conditions also. Extend $\mathcal{S}$ to the entire real line as an even function. By Theorem 1, we may express $\mathcal{S}$ as \[\mathcal{S}(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] We then recover $S(t)$:\[S(t+t_0)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0S(t'+t_0)\cos\omega t'dt'=\]\[\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'\Rightarrow\]
+We next assume that $\rho(\Delta)$ is sufficiently well behaved so as to be absolutely integrable, piecewise continuous and piecewise differentiable. Define $\mathcal{S}(t)\equiv S(t+t_0)$. Extend $\mathcal{S}$ to the entire real line as an even function. This is valid to do, since $S(t)$ is time-reversal symmetric about $t_0$. By Theorem 1, we may express $\mathcal{S}$ as \[\mathcal{S}(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] We then recover $S(t)$:\[S(t+t_0)=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0S(t'+t_0)\cos\omega t'dt'=\]\[\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'\Rightarrow\]
 
 \[
 S(t)=\frac{2}{\pi}\int^{\infty}_0\cos\omega(t-t_0)d\omega\int^{\infty}_{t_0}S(t')\cos\omega(t'-t_0)dt'
 \] 
-But we also know from Definition 1 that \[\mathcal{S}(t)=\tilde{\hat{\mathcal{S}}}(t)=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')e^{i\omega t'}dt'=\]\[\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')(\cos\omega t'+i\sin\omega t')dt'=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega t'dt'\] where we used the fact that $\mathcal{S}$ is an even function, and the integral of the product of an even and odd function vanishes. From the preceding expression we now see that $\hat{\mathcal{S}}$ is an even function. So we write \[\frac{1}{2\pi}\int^{\infty}_{-\infty}\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{1}{\pi}\int^{\infty}_0\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Thus 
+But we also know from Definition 1 that \[\mathcal{S}(t)=\tilde{\hat{\mathcal{S}}}(t)=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')e^{i\omega t'}dt'=\]\[\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')(\cos\omega t'+i\sin\omega t')dt'=\frac{1}{2\pi}\int^{\infty}_{-\infty}e^{-i\omega t}d\omega\int^{\infty}_{-\infty}\mathcal{S}(t')\cos\omega t'dt'\] where we used the fact that $\mathcal{S}$ is an even function, and the symmetric integral of the product of an even and odd function vanishes. From the preceding expression we now see that $\hat{\mathcal{S}}$ is an even function. So we write \[\frac{1}{2\pi}\int^{\infty}_{-\infty}\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{1}{\pi}\int^{\infty}_0\hat{\mathcal{S}}(\omega)\cos\omega td\omega=\frac{2}{\pi}\int^{\infty}_0\cos\omega td\omega\int^{\infty}_0\mathcal{S}(t')\cos\omega t'dt'\] Thus 
 
 \begin{equation}
 \hat{S}(\omega)=\sqrt{\frac{2}{\pi}}\int^{\infty}_{t_0}S(t)\cos\omega(t-t_0)dt
@@ -43,8 +43,8 @@ S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}(\omega)\cos\omega(t-t_0)d\omega=
 \label{eq:nospreadIFT}
 \end{equation}
 
-\subsection{Bunch Length Distribution $\xi(t')$}
-We call the fast rotation signal with no inital bunch length $S_0(t)$. Given an initial longitudinal distribution $\xi(t')$, the fast rotation signal is described by \[S(t)=\int\xi(t')S_0(t-t')dt'=\sqrt{2\pi}(\xi\ast S_0)(t)\] In the ideal case we would directly apply the convolution theorem to find that 
+\subsection{Symmetric Bunch Length Distribution $\xi(t')$}
+We call the fast rotation signal with no inital bunch length $S_0(t)$. Given an initial longitudinal distribution $\xi(t')$, the fast rotation signal is described by \[S(t)=\int\xi(t')S_0(t-t')dt'=\sqrt{2\pi}(\xi\ast S_0)(t)\] as was seen in the example above. In the ideal case we would directly apply the convolution theorem to find that 
 
 \begin{equation}
 \hat{S}(\omega)=\sqrt{2\pi}\hat{\xi}(\omega)\hat{S}_0(\omega)
@@ -67,14 +67,11 @@ S(t)=\sqrt{\frac{2}{\pi}}\int^{\infty}_0\hat{S}_0(\omega)\langle\cos\omega t'\ra
 
 \subsection{Asymmetric Longitudinal Bunch Distribution}
 
-If $\xi(t')$ is not symmetric, then we are faced with the problem that $\hat{S}(\omega)$ features an imaginary component. Blindly applying the convolution theorem yields \[\hat{S}(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle+i\hat{S}_0(\omega)\langle\sin\omega t'\rangle\]
+If $\xi(t')$ is not symmetric, then we are faced with the problem that $\hat{S}(\omega)$ features an imaginary component. Directly applying the convolution theorem yields \[\hat{S}(\omega)=\hat{S}_0(\omega)\langle\cos\omega t'\rangle+i\hat{S}_0(\omega)\langle\sin\omega t'\rangle\]
 
 Let's take a specific example of an asymmetric distribution to get a feel for what to do later. Suppose $\xi$ is even about some point $\mu\neq0$ (also the center of mass of the distribution), which is likely to happen in the g-2 experiment (accidental offset from the origin). Let $t_0$ be the time that the center of mass of the beam first arrives at a given detector if $\mu$ were to equal 0. Then the actual arrival time of the center of the bunch at the detector is $t'_0=t_0+\mu$. Furthermore, let's define $\xi'(t)=\xi(t+\mu)$. Then the physical situation described by $\xi'$ and $t'_0$ is the same as that described by $\xi$ and $t_0$. But if we use $\xi'$ and $t'_0$ for the Fourier analysis, we no longer have the imaginary term in $\hat{S}(\omega)$, since we're now dealing with a familiar situation: a symmetric longitudinal distribution. Therefore $\hat{S}(\omega)=\hat{S}'_0(\omega)\langle\cos\omega t'\rangle'$ where $\langle\text{ }\rangle'$ denotes averaging with respect to $\xi'(t)$, and $S'_0(t)$ is the fast rotation signal without initial longitudinal spread and with start time $t'_0$ 
 
-What happens with an asymmetric distribution $\xi(t)$ defined on the interval $[a,b]$? There is now no unique symmetry point which makes it obvious how to redefine $t_0$. But using the idea of the last paragraph, let $t'_0=t_0+x_0$ where $x_0$ is such that the for the function defined as \[f(x)=\int^{b-x}_{a-x}\xi(t+x)\sin\omega tdt\] $f(x_0)=0$. This effectively amounts to finding a new origin about which $\langle\sin\omega t'\rangle=0$. Since the frequency distribution that we deal with is very narrow, $(\omega-\omega_0)/\omega\sim10^{-3}$, we may approximate $f(x)$ by \[f(x)\approx\int^{b-x}_{a-x}\xi(t)\sin\omega_0 tdt\] Once we find $x_0$ and thus $t'_0$, then once again $\hat{S}(\omega)=\hat{S}'_0(\omega)\langle\cos\omega t'\rangle'$.
-
-\subsection{Introducing Vacuum Chamber Cutoffs to the Model}
-Currently the model does not feature cutoffs corresponding to the presence of the vacuum chamber boundaries in the ring, and so it propagates muons with forbidden revolution frequencies. This is easily remedied by altering $\rho(\Delta)$ to make it vanish outside the interval of $(-\Delta_c,\Delta_c)$, where in the g-2 experiment $\Delta_c=0.0025$. The remainder of this note will assume the presence of vacuum chamber cutoffs unless otherwise noted.
+What happens with an asymmetric distribution $\xi(t)$ defined on the interval $[a,b]$? There is now no unique symmetry point which makes it obvious how to redefine $t_0$. But using the idea of the last paragraph, let $t'_0=t_0+x_0$ where $x_0$ is such that the for the function defined as \[f(x)=\int^{b-x}_{a-x}\xi(t+x)\sin\omega tdt\] $f(x_0)=0$. This effectively amounts to finding a new origin about which $\langle\sin\omega t'\rangle=0$. Since the frequency distribution that we deal with is very narrow, we may approximate $f(x)$ by \[f(x)\approx\int^{b-x}_{a-x}\xi(t)\sin\omega_0 tdt\] Once we find $x_0$ and thus $t'_0$, then once again $\hat{S} (\omega)=\hat{S}'_0(\omega)\langle\cos\omega t'\rangle'$.
 
 \subsection{Physical Interpretation of the Fourier Transform of the Fast Rotation Signal}
 
