@@ -3,17 +3,17 @@
 
 \subsection{Generality}
 
-The fast rotation refers to the cyclotron motion in the ring, which has a revolution frequency of 6.71 MHz (period of 149 ns) 
-for muon propagating on the magic orbit with the magic momentum. 
+Fast rotation refers to the cyclotron motion in the ring, which has a revolution frequency of 6.71 MHz (period of 149 ns) 
+for muons propagating on the magic orbit with the magic momentum. 
 The fast rotation signal corresponds to observing the evolution of the beam as it rotates around the ring. 
 The transverse emittance of the beam and its momentum spread make the beam decohere (or debunch).
-To understand how the momentum spread leads to decoherence, one have to remember that the orbit radius for a fixed magnetic
+To understand how the momentum spread leads to decoherence, one has to remember that the orbit radius for a fixed magnetic
 field is set by the momentum of the particle. Two particles injected on the magic orbit but with different momenta will
 have different radii. Given than the speed of the muons almost does not depend on the momentum given they are relativistic,
 the different momenta lead to different revolution frequencies. The higher momentum muon will complete a revolution
 slower (larger radius) than the lower momentum muon (smaller radius). 
 The small difference in revolution frequency leads to the beam having decohered after about 30 $\mu$s. 
-From an initial beam with a limited longitudinal extension we end up with a beam filling entirely the ring.
+From an initial beam with a limited longitudinal extension we end up with a beam filling the entirety of the ring.
 
 \subsection{Analytical description}
 
@@ -21,12 +21,10 @@ Imagine that the initial muon distribution has zero emittance (no transverse siz
 The particles share a common revolution period $T$ and the time dependence of the intensity signal at a fixed point (signal measured with a fiber harp for example), is 
 
 \begin{equation}
-I(t)=\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\right),
+I(t)=\sum^{\infty}_{n=0}\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\right),
 \end{equation} 
-where $n$ is any non negative integer that corresponds to the number of revolution in the ring, 
-and $\theta$ is the azimuthal position of the point in the ring.
-Figure~\ref{fig:perfect_frs} shows what the fast rotation signal looks like for a beam with characteristics described above.
-The beam remains unchanged as a function of time given its perfectness.
+where $n$ corresponds to the number of revolutions in the ring, and $\theta$ is the azimuthal position of the point in the ring.
+Figure~\ref{fig:perfect_frs} shows what the fast rotation signal looks like for a beam with the characteristics described above. The beam remains unchanged as a function of time given its perfectness.
 
 \begin{figure}[bt]
 \centering
@@ -38,7 +36,7 @@ The beam remains unchanged as a function of time given its perfectness.
  
 A particle with momentum offset $\Delta$ will have revolution period $T(1+\Delta)$, so that 
 \begin{equation}
-I(t,\Delta)=\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\left(1+\Delta\right)\right). 
+I(t,\Delta)=\sum^{\infty}_{n=0}\delta\left(t-\left(n+\frac{\theta}{2\pi}\right)T\left(1+\Delta\right)\right) 
 \end{equation}
 The fast rotation signal at the point is then~\footnote{the notation $(n+\frac{\theta}{2\pi})T$ will be noted thereafter $nT$ for improved text clarity} 
 
@@ -55,9 +53,7 @@ S(t) &=& \sum^{\infty}_{n=0}\int\frac{e^{-\Delta^2/(2\Delta^2_0)}}{\sqrt{2\pi}\D
 %&=&\sum^{\infty}_{n=0}\frac{e^{-(t-nT)^2/2\Delta^2_0(n+\theta/2\pi)^2T^2}}{\sqrt{2\pi}\Delta_0nT}\label{eq:Espread_frs}
 \end{eqnarray}
 
-Note that there is no muon decay in Eq.~(\ref{eq:Espread_frs}) or the accompanying plots.
-Figure~\ref{fig:Espread_frs} shows the fast rotation signal for a beam with zero emittance, zero bunch length but with a 0.112\% momentum spread. 
-One can see that the beam decoheres. The decoherence envelope is set by the momentum spread, the more spread the faster the decoherence.
+Note that there is no muon decay in Eq.~(\ref{eq:Espread_frs}) on the accompanying plots. Figure~\ref{fig:Espread_frs} shows the fast rotation signal for a beam with zero emittance, zero bunch length but with a 0.112\% momentum spread. One can see that the beam decoheres. The decoherence envelope is set by the momentum spread, with the greater spread leading to faster the decoherence.
 The intensity asymptotically approaches that of the average stored current $\langle I\rangle = eN\mu/T$.
 
 \begin{figure}[bt]
@@ -120,8 +116,7 @@ S(t)=\frac{1}{\sqrt{2\pi}}\sum^{\infty}_{n=0}\frac{e^{-(t-nT)^2/2\Delta'^2_0n^2T
 where \[\Delta'^2_0=\frac{n^2T^2\Delta^2_0+\sigma^2_t}{n^2T^2}\]
 
 Figure~\ref{fig:E_T_spread_frs} shows the fast rotation signal for a beam with zero emittance, non-zero bunch length and non-zero momentum spread.
-One can see that the beam decoheres faster having a longitudinal extension. It is expected since the longitudinal extension can be seen as 
-created by a beam with an momentum spread having undergone an arbitrary number of revolution.
+One can see that the beam decoheres faster having a longitudinal extension. It is expected since the longitudinal extension can be seen as created by a beam with a momentum spread having undergone an arbitrary number of revolution.
 
 \begin{figure}[bt]
 \centering
