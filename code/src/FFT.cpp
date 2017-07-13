@@ -258,8 +258,8 @@ int main(int argc, char* argv[]){
 	pt2->SetTextAngle(90);
 	//hfft->SetAxisRange(6667000, 6745000);
 	hfft->SetAxisRange(6630000, 6780000);
-	TLine *line1 = new TLine(6667000,yMin,6667000,yMax);
-	TLine *line2 = new TLine(6745000,yMin,6745000,yMax);
+	TLine *line1 = new TLine(6688991,yMin,6688991,yMax);
+        TLine *line2 = new TLine(6722520,yMin,6722520,yMax);
 	line1->SetLineWidth(2.5);
 	line2->SetLineWidth(2.5);
 	line1->SetLineColor(1);
