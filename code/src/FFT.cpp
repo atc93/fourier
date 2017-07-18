@@ -140,13 +140,13 @@ int main(int argc, char* argv[]){
 	double *mag = new double[size];
 
 	//need to add empty data at the begining?
-	for (int i=0;i<int(tS);++i){
+	/*for (int i=0;i<int(tS);++i){
     re[i]=0;
     im[i]=0;
-  }
+  }*/
 
 	//to do the C2C FFT, you have to split your data into real and purely imaginary parts
-	for (int i=tS;i<size;++i){
+	for (int i=0;i<size;++i){
 		re[i]=std::real(data[i]);
 		im[i]=std::imag(data[i]);
 	}
@@ -164,8 +164,8 @@ int main(int argc, char* argv[]){
 
 	//Multiplication by Exp[-i*omega*t0]
 	for(int n=0;n<size;++n){
-		re[n]=re[n]*std::real(std::polar(1.0,(-2*PI*n*t0)/(size)))-im[n]*std::imag(std::polar(1.0,(-2*PI*n*t0)/(size)));
-		im[n]=im[n]*std::imag(std::polar(1.0,(-2*PI*n*t0)/(size)))+im[n]*std::real(std::polar(1.0,(-2*PI*n*t0)/(size)));
+		/*re[n]=re[n]*std::real(std::polar(1.0,(-2*PI*n*t0)/(size)))-im[n]*std::imag(std::polar(1.0,(-2*PI*n*t0)/(size)));
+		im[n]=im[n]*std::imag(std::polar(1.0,(-2*PI*n*t0)/(size)))+im[n]*std::real(std::polar(1.0,(-2*PI*n*t0)/(size)));*/
 		mag[n] = re[n]*re[n] + im[n]*im[n];
 	}
 
