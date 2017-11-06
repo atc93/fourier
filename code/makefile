@@ -22,7 +22,7 @@ OBJ_DIR = obj
 SRC_DIR = src
 INC_DIR = inc
 
-all: FastRotationToyModel FFT fillDigitizeFRS fillWshape 
+all: FastRotationToyModel FastRotationToyModelCalo FFT fillDigitizeFRS fillWshape 
 
 fillWshape:	$(SRC_DIR)/fillWshape.cpp
 	$(CC) -o $(BIN_DIR)/fillWshape $(SRC_DIR)/fillWshape.cpp $(RCXX)
@@ -32,6 +32,9 @@ fillDigitizeFRS:	$(SRC_DIR)/fillDigitizeFRS.cpp
 
 FastRotationToyModel: $(SRC_DIR)/FastRotationToyModel.cpp
 	$(CC) -o $(BIN_DIR)/FastRotationToyModel $(SRC_DIR)/FastRotationToyModel.cpp $(RCXX)
+
+FastRotationToyModelCalo: $(SRC_DIR)/FastRotationToyModelCalo.cpp
+	$(CC) -o $(BIN_DIR)/FastRotationToyModelCalo $(SRC_DIR)/FastRotationToyModelCalo.cpp $(RCXX)
 
 FFT: $(SRC_DIR)/FFT.cpp
 	$(CC) -o $(BIN_DIR)/FFT $(SRC_DIR)/FFT.cpp $(RCXX)
